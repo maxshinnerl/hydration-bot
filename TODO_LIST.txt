@@ -1,0 +1,3 @@
+-Check permission level on commands, i.e. only let admins use $move
+-Actual hydration stuff lol
+-
