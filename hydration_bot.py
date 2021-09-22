@@ -13,7 +13,6 @@ GUILD = SERVER
 
 client = discord.Client()
 
-
 # so tldr just make functions like on_ready, on_message, etc
 # add the @client.event tag (decorator?) before each one
 
@@ -42,11 +41,15 @@ async def on_message(message):
     Let's say commands starting with $ are commands for this bot.
     send that to message_handling.py
     """
+
     BAguild = client.guilds[0]
     #print("here", BAguild, type(BAguild), flush=True)
 
 
     response = None
+    
+
+    print('got a message', flush=True)
 
 
     # in case your bot is the one saying the thing, just prevent endless recursion
@@ -62,6 +65,16 @@ async def on_message(message):
             for memberid in args[:-1]:
                 member = await BAguild.fetch_member(memberid)
                 await member.move_to(args[-1])
+   
+
+        elif command == "$joinleave":
+            print('joinleave: ', args[0], flush=True)
+            channel = args[0]
+            await channel.connect()
+            for clnt in client.voice_clients:
+                # NOTE: might need to add a checker here in case bot is present in multiple channels
+                print(clnt, flush=True)
+                await clnt.disconnect()
 
     # Hello world example
     if message.content.lower() == 'matt is stinky':

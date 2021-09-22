@@ -17,6 +17,9 @@ def command_handler(message, client):
 
     if command == '$move':
         response, ret_args = move(message, args, client)
+
+    if command == '$joinleave':
+        response, ret_args = joinleave(message, args, client)
     
     
     # messages need to be sent in an async function, do that in main

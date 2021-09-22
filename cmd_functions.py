@@ -51,3 +51,18 @@ def move(message, args, client):
     response = f"Moving channel {args[0]} to {args[1]}"
 
     return response, ret_args
+
+
+def joinleave(message, args, client):
+    """
+    Join and leave specified channel (args[0])
+    Just testing here
+    """
+    origin_channel =      vcs[args[0].lower()]
+    origin_channel = client.get_channel(int(origin_channel[2:][:-1]))
+
+    response = f"joining and leaving {args[0]}"
+
+    ret_args = []
+    ret_args.append(origin_channel)
+    return response, ret_args
