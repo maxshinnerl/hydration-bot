@@ -65,7 +65,10 @@ async def on_message(message):
 
     if message.content[0] == '$':
         # command
-        command, response, args = command_handler(message, client)
+        command, response, args = command_handler(message,
+                                                  client,
+                                                  all_data=all_data,
+                                                  weapon_dict=weapon_dict)
         
         # execute stuff
         if command == "$move":

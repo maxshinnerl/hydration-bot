@@ -1,7 +1,8 @@
 import discord
 from cmd_functions import *
+from DESTINY import hbfunc
 
-def command_handler(message, client):
+def command_handler(message, client, all_data, weapon_dict):
     """
     called from on_message() in the main script
     """
@@ -20,6 +21,9 @@ def command_handler(message, client):
 
     if command == '$joinleave':
         response, ret_args = joinleave(message, args, client)
+
+    if command == '$weapstat':
+        response = hbfunc.weapstat(message, args, client, all_data, weapon_dict)
     
     
     # messages need to be sent in an async function, do that in main
