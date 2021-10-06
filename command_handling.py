@@ -24,6 +24,9 @@ def command_handler(message, client, all_data, weapon_dict):
 
     if command == '$weapstat':
         response = hbfunc.weapstat(message, args, client, all_data, weapon_dict)
+
+    if command == '$recoil':
+        response = hbfunc.recoil(message, args, client, all_data, weapon_dict)
     
     
     # messages need to be sent in an async function, do that in main
