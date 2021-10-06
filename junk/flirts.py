@@ -15,7 +15,11 @@ def get_flirts(sender, receiver):
               "Hey " + receiver + " , " + sender + " wants to invite you in for a drink (the drink is water)",
               "Whatcha doin later " + receiver + "? Oh cool, " + sender + " is doing the same! ;)",
               "Daaang " + receiver + ", you lookin HYDRATED",
-              receiver + "get paid, get laid, gatorade, drink water"
+              receiver + " get paid, get laid, gatorade, drink water",
+              receiver + " are you a parking ticket? 'cause you got FINE written all over you",
+              "Hey " + receiver + ", if you were a fruit you'd be a fuggen kumquat or sum idk",
+              "I know " + receiver + " and " + sender + " aren't socks, but I think they'd make a great pair",
+              "SHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH " + receiver + ' you cute'
               ]
 
 

@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from api_keys import *
 from command_handling import *
 
+from DESTINY import basics
+from DESTINY import manifestation
+
 load_dotenv()
 
 # from api_keys.py
@@ -15,6 +18,10 @@ client = discord.Client()
 
 # so tldr just make functions like on_ready, on_message, etc
 # add the @client.event tag (decorator?) before each one
+
+# generate manifest
+all_data = manifestation.get_all_data()
+weapon_dict = manifestation.get_weapon_dict(all_data)
 
 @client.event
 async def on_ready():
