@@ -37,7 +37,7 @@ def get_manifest():
 
 def build_dict():
     #connect to the manifest
-    con = sqlite3.connect('manifest.content')
+    con = sqlite3.connect('Manifest.content')
     print('Connected', flush=True)
     #create a cursor object
     cur = con.cursor()
