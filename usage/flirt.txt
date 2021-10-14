@@ -1,0 +1,8 @@
+Correct usage for $flirt command:
+
+$flirt @<some member>
+
+Examples:
+
+$flirt @EatYoWaffles
+$flirt @HydrationBot

@@ -1,0 +1,10 @@
+NOTE: This command will only work for OTRN/Admins
+
+Correct usage for $move:
+
+$move <start channel> <end channel>
+
+Examples:
+$move 6-A 6-B
+$move gamer-lounge hydration-zone
+$move hydration-zone 3-b

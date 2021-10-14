@@ -1,0 +1,9 @@
+Correct usage for $recoil command:
+
+$recoil <Name of Destiny 2 Weapon>
+
+Examples:
+
+$recoil Bygones
+$recoil The Palindrome (Adept)
+$recoil Darkest Before

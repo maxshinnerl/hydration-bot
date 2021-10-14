@@ -12,3 +12,6 @@ For admins:
 In beta:
  - $usage    -- (TODO) Give usage advice for a specified command.
  - $joinleave -- have hydration bot join and leave voice channel
+
+For instructions on using commands, see $usage.
+Example: $usage $flirt

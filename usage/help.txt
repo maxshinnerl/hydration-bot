@@ -1,0 +1,5 @@
+Correct usage for $help command:
+
+$help
+
+That's it :)

@@ -34,6 +34,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}):
 
     if command == '$help':
         response = command_list(message, args, client)
+
+    if command == '$usage':
+        response = usage(message, args, client)
     
     
     # messages need to be sent in an async function, do that in main

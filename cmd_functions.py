@@ -81,3 +81,24 @@ def command_list(message, args, client):
     return response
     
 
+def usage(message, args, client):
+    """
+
+    """
+    if len(args) != 1:
+        return "Incorrect usage call, try $usage <command>\nExample:\n$usage $flirt"
+
+    # command in question
+    ciq = args[0]
+    if ciq[0] == "$":
+        ciq = ciq[1:]
+
+    # load in file
+    # NOTE: maintain usage directory, with corresponding instruction file as cmd.txt
+
+    with open(f"usage/{ciq}.txt") as f:
+        response = f.read()
+
+    return response
+
+

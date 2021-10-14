@@ -1,0 +1,30 @@
+# General tips:
+1) When starting, run $sudo apt-get update, followed by $sudo apt-get install python3-pip.  Remember to use python3 and pip3 (include the 3)
+
+2) for logging on, do ssh -i <path to pem file in ~/keypairs> ubuntu@publicip (see aws)
+
+3) Downloading and building manifest is too heavy for AWS.  Do on local computer
+and transfer via Github (you get too big warnings but it's fine)
+
+4) don't forget to set the variables in the bash profile (keys)
+
+5) tmux as a daemon instead of gunicorn
+
+   - $tmux
+
+       - starts a new window
+       - inside this window, run script and exit with ctrl+B then D 
+       - it will stay running, even after exiting
+       - note that terminating ec2 instance *will* kill it
+
+   - $tmux attach
+
+       - run to go back inside and see the running script
+
+Packages needed (aside from pip and stuff):
+discord
+python-dotenv
+numpy
+requests
+
+

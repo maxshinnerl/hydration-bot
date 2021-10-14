@@ -1,0 +1,10 @@
+NOTE: $joinleave is in beta and will likely be replaced soon.
+
+Correct usage for $joinleave:
+
+$joinleave <voice channel name>
+
+Examples:
+
+$joinleave 6-a
+$joinleave 3-B
