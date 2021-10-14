@@ -2,11 +2,12 @@ import discord
 from cmd_functions import *
 from DESTINY import hbfunc
 
-def command_handler(message, client, all_data, weapon_dict):
+def command_handler(message, client, admin, all_data={}, weapon_dict={}):
     """
     called from on_message() in the main script
     """
     command, args = split_args(message)
+
 
     # lengthy decision tree, call different functions based on the command
 
@@ -17,7 +18,10 @@ def command_handler(message, client, all_data, weapon_dict):
         response = flirt(message, args)
 
     if command == '$move':
-        response, ret_args = move(message, args, client)
+        if admin is True:
+            response, ret_args = move(message, args, client)
+        else:
+            response = "Must be OTRN to use $move"
 
     if command == '$joinleave':
         response, ret_args = joinleave(message, args, client)
@@ -27,6 +31,9 @@ def command_handler(message, client, all_data, weapon_dict):
 
     if command == '$recoil':
         response = hbfunc.recoil(message, args, client, all_data, weapon_dict)
+
+    if command == '$help':
+        response = command_list(message, args, client)
     
     
     # messages need to be sent in an async function, do that in main

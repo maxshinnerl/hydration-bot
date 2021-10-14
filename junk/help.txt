@@ -1,0 +1,14 @@
+List of available commands:
+
+For all members:
+ - $weapstat -- show stats of a specified Destiny 2 weapon
+ - $recoil   -- recommend counterbalance mod for specified Destiny 2 weapon
+ - $flirt    -- send a funny message to someone
+ - $help     -- display list of currently available commands
+
+For admins:
+ - $move     -- move all members from one voice channel to another
+
+In beta:
+ - $usage    -- (TODO) Give usage advice for a specified command.
+ - $joinleave -- have hydration bot join and leave voice channel

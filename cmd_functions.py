@@ -66,3 +66,18 @@ def joinleave(message, args, client):
     ret_args = []
     ret_args.append(origin_channel)
     return response, ret_args
+
+
+def command_list(message, args, client):
+    """
+    corresponding to $help command
+
+    Just list current available commands
+    """
+
+    with open("junk/help.txt") as f:
+        response = f.read()
+
+    return response
+    
+

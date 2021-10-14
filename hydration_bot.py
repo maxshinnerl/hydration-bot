@@ -20,8 +20,12 @@ client = discord.Client()
 # add the @client.event tag (decorator?) before each one
 
 # generate manifest
-all_data = manifestation.get_all_data()
-weapon_dict = manifestation.get_weapon_dict(all_data)
+print("skipping manifest generation")
+all_data={}
+weapon_dict={}
+#all_data = manifestation.get_all_data()
+#weapon_dict = manifestation.get_weapon_dict(all_data)
+
 
 @client.event
 async def on_ready():
@@ -50,14 +54,14 @@ async def on_message(message):
     """
 
     BAguild = client.guilds[0]
-    #print("here", BAguild, type(BAguild), flush=True)
-
 
     response = None
     
-
-    print('got a message', flush=True)
-
+    # get admin status
+    if message.author.top_role.name == "OTRN":
+        admin = True
+    else:
+        admin = False
 
     # in case your bot is the one saying the thing, just prevent endless recursion
     if message.author == client.user:
@@ -67,11 +71,12 @@ async def on_message(message):
         # command
         command, response, args = command_handler(message,
                                                   client,
+                                                  admin,
                                                   all_data=all_data,
                                                   weapon_dict=weapon_dict)
         
         # execute stuff
-        if command == "$move":
+        if (command == "$move") and (admin is True):
             for memberid in args[:-1]:
                 member = await BAguild.fetch_member(memberid)
                 await member.move_to(args[-1])
