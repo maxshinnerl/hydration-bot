@@ -92,21 +92,27 @@ def get_table_list(cur):
     return tbls
 
 
-def get_all_data():
+def get_all_data(regen=False):
     """
     Pickle the output of build_dict.
     This function gives the all_data dict that should be used for everything
     """
 
     #check if pickle exists, if not create one.
-    if os.path.isfile(r'path\to\file\manifest.content') == False:
+    if regen == True:
+        print("Regenerating manifest...", flush=True)
         get_manifest() 
         all_data = build_dict()
         with open('manifest.pickle', 'wb') as data:
             pickle.dump(all_data, data)
             print("'manifest.pickle' created!\nDONE!", flush=True)
     else:
-        print('Pickle Exists', flush=True)
+        print("Not regenerating manifest")
+
+    if os.path.isfile('manifest.pickle'):
+        pass
+    else:
+        print("FAIL: Pickle not present.  Please set regen=True or import otherwise")
 
     with open('manifest.pickle', 'rb') as data:
         all_data = pickle.load(data)

@@ -20,11 +20,16 @@ client = discord.Client()
 # add the @client.event tag (decorator?) before each one
 
 # generate manifest
-print("skipping manifest generation")
-all_data={}
-weapon_dict={}
-#all_data = manifestation.get_all_data()
-#weapon_dict = manifestation.get_weapon_dict(all_data)
+regen = input("Rebuild manifest? y/n (DO NOT RUN ON AWS): ")
+if regen.lower() == "y":
+    all_data = manifestation.get_all_data(regen=True)
+elif regen.lower() == "n":
+    all_data = manifestation.get_all_data(regen=False)
+else:
+    print("assuming no", flush=True)
+    all_data = manifestaion.get_all_data(regen=False)
+
+weapon_dict = manifestation.get_weapon_dict(all_data)
 
 
 @client.event
