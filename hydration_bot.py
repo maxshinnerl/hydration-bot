@@ -61,6 +61,8 @@ async def on_message(message):
     BAguild = client.guilds[0]
 
     response = None
+
+    print("message received: ", message.author, flush=True)
     
     # get admin status
     if message.author.top_role.name == "OTRN":
