@@ -119,9 +119,12 @@ def compare(message, args, client, all_data, weapon_dict):
         return response
     
     labels = list(w1_stats.keys())[2:]
-    
     w1_values = list(w1_stats.values())[2:]
     w2_values = list(w2_stats.values())[2:]
+
+    labels.reverse()
+    w1_values.reverse()
+    w2_values.reverse()
     
     x = np.arange(len(labels)) * 2
     width = 0.7
@@ -133,9 +136,9 @@ def compare(message, args, client, all_data, weapon_dict):
     ax.set_title('Stat Comparison of ' + w1 + ' and ' + w2)
     ax.set_yticks(x)
     ax.set_yticklabels(labels)
-    ax.legend()
 
-    # ax.text(x,y,string)
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(reversed(handles), reversed(labels), loc='upper right')
     
     for rect1, rect2 in zip(rects1, rects2):
         ax.text(rect1.get_width(), rect1.get_y()+0.15, rect1.get_width())

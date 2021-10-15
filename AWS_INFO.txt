@@ -27,6 +27,7 @@ python-dotenv
 numpy
 requests
 matplotlib
+pynacl
 
 other weirdos:
 sudo apt-get install libjpeg-dev
