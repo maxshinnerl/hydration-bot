@@ -96,6 +96,15 @@ async def on_message(message):
                 print(clnt, flush=True)
                 await clnt.disconnect()
 
+        elif command == "$compare":
+
+            if response == "Generated":
+                # we have a result
+                await message.channel.send(file=discord.File('images/comp.png'))
+                response = None
+
+
+
     # Hello world example
     if message.content.lower() == 'matt is stinky':
         response = "super stinky, take a shower stinky.  Also drink water"

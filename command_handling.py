@@ -38,6 +38,8 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}):
     if command == '$usage':
         response = usage(message, args, client)
     
+    if command == '$compare':
+        response = hbfunc.compare(message, args, client, all_data, weapon_dict)
     
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args

@@ -1,5 +1,9 @@
 # Lowest level hydration bot functions file, specifically for DESTINY stuff
 import json
+import numpy as np
+import matplotlib.pyplot as plt
+
+import helpers
 
 def get_weapon_stats(weapon_name, all_data, weapon_dict):
     """
@@ -98,4 +102,48 @@ def recoil(message, args, client, all_data, weapon_dict):
     return response
 
     
+def compare(message, args, client, all_data, weapon_dict):
+    """
+    Pass in two weapon names and generate visualization on stats
+    """
+    # first need to extract weapon names (remember some are multiple words)
+    # split on & sign
 
+    w1, w2 = helpers.split_names(args)
+
+    w1_stats = get_weapon_stats(w1, all_data, weapon_dict)
+    w2_stats = get_weapon_stats(w2, all_data, weapon_dict)
+    
+    if w1_stats.keys() != w2_stats.keys():
+        response = "Weapons too different to compare"
+        return response
+    
+    labels = list(w1_stats.keys())[2:]
+    
+    w1_values = list(w1_stats.values())[2:]
+    w2_values = list(w2_stats.values())[2:]
+    
+    x = np.arange(len(labels)) * 2
+    width = 0.7
+    
+    fig, ax = plt.subplots(figsize=(10,6))
+    rects1 = ax.barh(x - width/2, w1_values, width, align='edge', label=w1)
+    rects2 = ax.barh(x + width/2, w2_values, width, align='edge', label=w2)
+    
+    ax.set_title('Stat Comparison of ' + w1 + ' and ' + w2)
+    ax.set_yticks(x)
+    ax.set_yticklabels(labels)
+    ax.legend()
+
+    # ax.text(x,y,string)
+    
+    for rect1, rect2 in zip(rects1, rects2):
+        ax.text(rect1.get_width(), rect1.get_y()+0.15, rect1.get_width())
+        ax.text(rect2.get_width(), rect2.get_y()+0.15, rect2.get_width())
+    
+    fig.tight_layout()
+
+    plt.savefig("images/comp.png")
+    
+    return "Generated"
+    

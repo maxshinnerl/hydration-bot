@@ -1,0 +1,9 @@
+Correct usage for $compare command:
+
+$compare <weapon1> & <weapon2>
+
+Examples:
+$compare The Palindrome (Adept) & Fatebringer (Timelost)
+$compare The Hothead & Tomorrow's Answer
+
+NOTE: This is a CASE SENSITIVE command (capitalization matters)
