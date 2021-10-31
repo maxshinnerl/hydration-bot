@@ -29,7 +29,10 @@ def get_weapon_stats(weapon_name, all_data, weapon_dict):
             stat_name = all_data['DestinyStatDefinition'][info['statHash']]['displayProperties']['name']
             stats[stat_name] = info['value']
 
+    stats.pop('', None)
+
     return stats
+
 
 def weapstat(message, args, client, all_data, weapon_dict):
     """
@@ -45,6 +48,7 @@ def weapstat(message, args, client, all_data, weapon_dict):
         response += name + ": " + str(val) + "\n"
 
     return response
+
 
 def recoil(message, args, client, all_data, weapon_dict):
     """
