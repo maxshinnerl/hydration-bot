@@ -10,6 +10,7 @@ For all members:
  - $weapstat -- show stats of a specified Destiny 2 weapon
  - $recoil   -- recommend counterbalance mod for specified Destiny 2 weapon
  - $compare  -- Show comparison of two specified weapons (visualization)
+ - $sametype -- Get all weapons in the game of the same archetype of given weapon
 
 For admins:
  - $move     -- move all members from one voice channel to another

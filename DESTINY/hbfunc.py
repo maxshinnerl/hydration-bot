@@ -29,7 +29,9 @@ def get_weapon_stats(weapon_name, all_data, weapon_dict):
             stat_name = all_data['DestinyStatDefinition'][info['statHash']]['displayProperties']['name']
             stats[stat_name] = info['value']
 
+    # pop unhelpful stats
     stats.pop('', None)
+    stats.pop('Inventory Size', None)
 
     return stats
 
@@ -154,3 +156,61 @@ def compare(message, args, client, all_data, weapon_dict):
     
     return "Generated"
     
+
+def sametype(message, args, client, all_data, weapon_dict):
+    """
+    Take in a weapon name, get all other weapons in the game of the same archetype
+    Ordered by rarity, then alphabetical
+    
+    Note: Devil's Ruin and Vex Mythoclast have both Charge and RPM
+    Will prioritize RPM in this case.  annoying lol
+    """
+
+    name = " ".join(args)
+
+    stats = get_weapon_stats(name, all_data, weapon_dict)
+    weap_type = weapon_dict[name][0]['itemTypeDisplayName']
+    
+    if name == "Vex Mythoclast":
+        # lol
+        weap_type = "Auto Rifle"
+    
+    if "Rounds Per Minute" in stats.keys():
+        rof = "Rounds Per Minute"
+        
+    elif "Charge Time" in stats.keys():
+        rof = "Charge Time"
+    
+    else:
+        print('weird -- No RPM or Charge Time')
+        return
+    
+    samesies = []
+    for w in weapon_dict.keys():
+        if w == name or w == "Vex Mythoclast":
+            # bite me
+            continue
+            
+        if weapon_dict[w][0]['itemTypeDisplayName'] == weap_type:
+            temp_stats = get_weapon_stats(w, all_data, weapon_dict)
+            if temp_stats[rof] == stats[rof]:
+                rarity = weapon_dict[w][0]['inventory']['tierTypeName']
+                rarity_int = weapon_dict[w][0]['inventory']['tierType']
+                samesies.append((w, rarity, rarity_int))
+            
+    if len(samesies) == 0:
+        return("One of a kind!")
+
+    samesies.sort(key=lambda x: (-x[2], x[0]))
+    
+    # Formulate response
+    response = ""
+    last_type = ""
+    for wtup in samesies:
+        if wtup[1] != last_type:
+            last_type = wtup[1]
+            response += "\n" + wtup[1] + ":\n\n"
+            
+        response += wtup[0] + "\n"
+
+    return(response)   
