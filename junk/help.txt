@@ -19,3 +19,5 @@ In beta:
 
 For instructions on using commands, see $usage.
 Example: $usage $flirt
+
+For MEE6 bot (music, etc), type !help
