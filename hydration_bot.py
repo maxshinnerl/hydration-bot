@@ -105,6 +105,11 @@ async def on_message(message):
                 await message.channel.send(file=discord.File('images/comp.png'))
                 response = None
 
+        elif command == "$sausage":
+
+            await message.channel.send(file=discord.File('images/sausage.jpg'))
+            response = None
+
 
 
     # Hello world example
