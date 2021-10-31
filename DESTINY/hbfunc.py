@@ -204,12 +204,12 @@ def sametype(message, args, client, all_data, weapon_dict):
     samesies.sort(key=lambda x: (-x[2], x[0]))
     
     # Formulate response
-    response = ""
+    response = weap_type + " | " + rof + ": " + str(stats[rof]) + "\n" 
     last_type = ""
     for wtup in samesies:
         if wtup[1] != last_type:
             last_type = wtup[1]
-            response += "\n" + wtup[1] + ":\n\n"
+            response += "\n**" + wtup[1].upper() + "**\n"
             
         response += wtup[0] + "\n"
 
