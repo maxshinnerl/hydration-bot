@@ -7,7 +7,6 @@ def get_flirts(sender, receiver):
               "Is it hot in here or is it just "+receiver,
               "uwu " + receiver,
               sender + " thinks " + receiver + " is well hydrated",
-              receiver + " nice cock",
               receiver + " , you have a secret admirer.  And by secret, I mean it's " + sender,
               "I tried " + receiver,
               receiver + ", " + sender + " wants to get some ramen this weekend",
