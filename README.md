@@ -3,9 +3,12 @@ A project by Max Shinnerl (ign EatYoWaffles)
 
 Main goal: merging of the Discord and Destiny 2 API's to allow users to query Destiny 2 data through Discord bot commands.
 
-Currently supported commands (available by the $help commands):
+Example command output: see https://github.com/maxshinnerl/hydration-bot/blob/main/images/comp.png 
+
+Currently supported commands (available by the $help command):
 
 For all members:
+
  General:
  - $flirt    -- send a funny message to someone
  - $help     -- display list of currently available commands
@@ -19,6 +22,7 @@ For all members:
  - $sametype -- Get all weapons in the game of the same archetype of given weapon
 
  Note: Destiny Specific commands are CASE SENSITIVE
+ 
  TIP: Look in collections for correct capitalization.
 
 For admins:
@@ -30,6 +34,6 @@ In beta:
 For instructions on using commands, see $usage.
 Example: $usage $flirt
 
-For MEE6 bot (music, etc), type !help
+
 
 
