@@ -238,7 +238,7 @@ def perk(message, args, client, all_data, perk_dict):
     stats = stat_list[0]['investmentStats']
 
     if len(stats) == 0:
-        response += "None"
+        response += "\nNone"
 
     else:
         for stat in stats:
