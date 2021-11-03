@@ -1,12 +1,6 @@
 List of available commands:
 
 For all members:
- General:
- - $flirt    -- send a funny message to someone
- - $insult   -- send a funny message to someone but more >:(
- - $help     -- display list of currently available commands
- - $usage    -- Give usage advice for a specified command.
- - $sausage  -- ?
 
  Destiny Specific:
  - $weapstat -- show stats of a specified Destiny 2 weapon
@@ -16,6 +10,13 @@ For all members:
 
  Note: Destiny Specific commands are CASE SENSITIVE
  TIP: Look in collections for correct capitalization.
+
+ General:
+ - $flirt    -- send a funny message to someone
+ - $insult   -- send a funny message to someone but more >:(
+ - $help     -- display list of currently available commands
+ - $usage    -- Give usage advice for a specified command.
+ - $sausage  -- ?
 
 For admins:
  - $move     -- move all members from one voice channel to another
