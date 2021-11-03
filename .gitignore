@@ -1,0 +1,6 @@
+*__pycache__*
+*.ipynb*
+images/comp.png
+MANZIP
+Manifest.content
+connect_to_aws.sh
