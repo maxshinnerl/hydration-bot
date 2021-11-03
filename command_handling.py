@@ -2,7 +2,7 @@ import discord
 from cmd_functions import *
 from DESTINY import hbfunc
 
-def command_handler(message, client, admin, all_data={}, weapon_dict={}):
+def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_dict={}):
     """
     called from on_message() in the main script
     """
@@ -46,6 +46,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}):
 
     if command == '$insult':
         response = insult(message, args)
+
+    if command == '$perk':
+        response = hbfunc.perk(message, args, client, all_data, perk_dict)
     
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args

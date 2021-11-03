@@ -170,3 +170,25 @@ def get_weapon_dict(all_data):
         weapons_dict[key] = sorted(val, key = lambda x: all_data['DestinyPowerCapDefinition'][x['quality']['versions'][0]['powerCapHash']]['powerCap'], reverse=True)
 
     return weapons_dict
+
+
+def get_perk_dict(all_data):
+    """
+    Get the dictionary of weapon perks with names of weapons as keys.
+    Values will be a list of all matches to that perk name
+        - Some match multiple times, i.e. weapon frames.
+        
+    Probably mainly used for $perks command
+    """
+    perk_dict = {}
+    for key in all_data['DestinyInventoryItemDefinition'].keys():
+        if "itemCategoryHashes" in all_data['DestinyInventoryItemDefinition'][key].keys():
+            if 610365472 in all_data['DestinyInventoryItemDefinition'][key]["itemCategoryHashes"]:
+                # make perk name the key
+                # values will be the dict of all the info
+                name = all_data['DestinyInventoryItemDefinition'][key]['displayProperties']['name']
+                if name not in perk_dict.keys():
+                    perk_dict[name] = []
+                perk_dict[name].append(all_data['DestinyInventoryItemDefinition'][key])
+                
+    return perk_dict

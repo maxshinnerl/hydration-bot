@@ -16,6 +16,7 @@ For all members:
  - $recoil   -- recommend counterbalance mod for specified Destiny 2 weapon
  - $compare  -- Show comparison of two specified weapons (visualization)
  - $sametype -- Get all weapons in the game of the same archetype of given weapon
+ - $perk    -- Get details on a weapon perk
 
  Note: Destiny Specific commands are CASE SENSITIVE
  TIP: Look in collections for correct capitalization.

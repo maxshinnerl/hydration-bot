@@ -30,6 +30,7 @@ else:
     all_data = manifestaion.get_all_data(regen=False)
 
 weapon_dict = manifestation.get_weapon_dict(all_data)
+perk_dict = manifestation.get_perk_dict(all_data)
 
 
 @client.event
@@ -80,7 +81,8 @@ async def on_message(message):
                                                   client,
                                                   admin,
                                                   all_data=all_data,
-                                                  weapon_dict=weapon_dict)
+                                                  weapon_dict=weapon_dict,
+                                                  perk_dict=perk_dict)
         
         # execute stuff
         if (command == "$move") and (admin is True):

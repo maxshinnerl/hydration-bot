@@ -214,3 +214,39 @@ def sametype(message, args, client, all_data, weapon_dict):
         response += wtup[0] + "\n"
 
     return(response)   
+
+
+def perk(message, args, client, all_data, perk_dict):
+    """
+    Given the dictionary of perks, get info on the perk in question.
+    Name, description, and boosted stats if applicable.
+    """
+
+    response = ""
+
+    name = " ".join(args)
+
+    stat_list = perk_dict[name]
+
+    if len(stat_list) > 1:
+        response += "Multiple results found, here's the first one:\n\n"
+
+    response += "**Perk Name**\n" + name
+    response += "\n\n**Description**\n" + stat_list[0]['displayProperties']['description']
+    response += "\n\n**Stats**"
+
+    stats = stat_list[0]['investmentStats']
+
+    if len(stats) == 0:
+        response += "None"
+
+    else:
+        for stat in stats:
+            response += "\n  • "
+            statname = all_data['DestinyStatDefinition'][stat['statTypeHash']]['displayProperties']['name']
+            statval  = str(stat['value'])
+            if statval[0] != "-":
+                statval = "+" + statval
+            response += statname + ": "  + statval
+
+    return response
