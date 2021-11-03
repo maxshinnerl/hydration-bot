@@ -1,0 +1,9 @@
+Correct usage for $insult command:
+
+$insult <user>
+
+Example:
+
+$insult @EatYoWaffles
+
+
