@@ -3,6 +3,7 @@ import numpy as np
 import random
 
 from junk.flirts import *
+from junk.insults import *
 from hard_coded.voice_channel_ids import *
 
 """
@@ -29,6 +30,23 @@ def flirt(message, args):
 
     return response
 
+
+def insult(message, args):
+    """
+    They made me code this one ok
+    """
+    print('here?', flush=True)
+    if len(args) != 1:
+        return
+
+    if args[0][1] != '@':
+        return
+
+    else:
+        insults = get_insults(str(message.author)[:-5], args[0])
+        response = random.choice(insults)
+
+    return response
 
 def move(message, args, client):
     """

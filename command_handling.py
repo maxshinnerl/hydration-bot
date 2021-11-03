@@ -43,6 +43,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}):
 
     if command == '$sametype':
         response = hbfunc.sametype(message, args, client, all_data, weapon_dict)
+
+    if command == '$insult':
+        response = insult(message, args)
     
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
