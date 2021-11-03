@@ -226,6 +226,9 @@ def perk(message, args, client, all_data, perk_dict):
 
     name = " ".join(args)
 
+    if len(name) < 3:
+        return None
+
     stat_list = perk_dict[name]
 
     if len(stat_list) > 1:
