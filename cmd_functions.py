@@ -35,7 +35,6 @@ def insult(message, args):
     """
     They made me code this one ok
     """
-    print('here?', flush=True)
     if len(args) != 1:
         return
 
