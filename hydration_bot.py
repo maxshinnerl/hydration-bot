@@ -109,7 +109,7 @@ async def on_message(message):
 
         elif command == "$sausage":
 
-            num_sosig = 2
+            num_sosig = 5 
             sosig = np.random.randint(num_sosig)
 
             await message.channel.send(file=discord.File(f'images/sausage{sosig}.jpg'))
