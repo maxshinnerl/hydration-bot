@@ -121,9 +121,6 @@ async def on_message(message):
     if message.content.lower() == 'matt is stinky':
         response = "super stinky, take a shower stinky.  Also drink water"
 
-    if (":o" in message.content.lower()) or ("😮" in message.content.lower()):
-        response = "omg he's doing the pog face XDDDDDDDD"
-
 
     if response is not None:    
         await message.channel.send(response)
