@@ -1,6 +1,7 @@
 import discord
 import os
 from dotenv import load_dotenv
+import numpy as np
 
 from api_keys import *
 from command_handling import *
@@ -120,6 +121,11 @@ async def on_message(message):
     # Hello world example
     if message.content.lower() == 'matt is stinky':
         response = "super stinky, take a shower stinky.  Also drink water"
+
+    if (":o" in message.content.lower()) or ("😮" in message.content.lower()):
+        rndm = np.random.randint(10)
+        if rndm == 0:
+            response = "omg he's doing the pog face XDDDDDDDD"
 
 
     if response is not None:    
