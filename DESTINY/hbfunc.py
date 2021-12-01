@@ -253,3 +253,50 @@ def perk(message, args, client, all_data, perk_dict):
             response += statname + ": "  + statval
 
     return response
+
+
+def rolls(message, args, client, all_data, weapon_dict):
+    """
+    get all possible perk rolls for a given weapon
+    """
+
+    weapon = args[0]
+
+    repeats = 1
+    rolls = {}
+    weaptype = weapon_dict[weapon][0]['itemTypeAndTierDisplayName']
+    
+    # for socket (usually barrels, mags, perk1, perk2, etc)
+    for socket in weapon_dict[weapon][0]['sockets']['socketEntries']:
+        # if random rolls
+        if "randomizedPlugSetHash" in socket.keys():
+            randhash = socket['randomizedPlugSetHash']
+            sockethash = socket['socketTypeHash']
+            socketname = all_data['DestinySocketTypeDefinition'][sockethash]['plugWhitelist'][0]['categoryIdentifier']
+        
+            # for every perk that goes in that socket for this weapon
+            perks = set()
+            for perk in all_data['DestinyPlugSetDefinition'][randhash]['reusablePlugItems']:
+                itemhash = perk['plugItemHash']
+                perks.add(all_data['DestinyInventoryItemDefinition'][itemhash]['displayProperties']['name'])
+                
+            # save list of perks for each socket name
+            if socketname == "frames":
+                socketname = "Main Perk " + str(repeats)
+                repeats += 1
+            else:
+                socketname = socketname[0].upper() + socketname[1:]
+                
+            rolls[socketname] = list(perks)
+    
+    response = "**Weapon**\n" + weapon + " : " + weaptype + "\n\n"
+    
+    for key in rolls.keys():
+        response += f"**{key}**\n"
+        for perk in rolls[key]:
+            response += perk + "\n"
+        response += "\n"
+
+    response += "See the $perk command for details on any of the above"
+    return response
+
