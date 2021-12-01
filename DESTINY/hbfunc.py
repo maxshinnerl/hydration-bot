@@ -125,8 +125,8 @@ def compare(message, args, client, all_data, weapon_dict):
         return response
     
     labels = list(w1_stats.keys())[2:]
-    w1_values = list(w1_stats.values())[2:]
-    w2_values = list(w2_stats.values())[2:]
+    w1_values = [w1_stats[key] for key in labels]
+    w2_values = [w2_stats[key] for key in labels]
 
     labels.reverse()
     w1_values.reverse()
