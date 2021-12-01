@@ -260,7 +260,7 @@ def rolls(message, args, client, all_data, weapon_dict):
     get all possible perk rolls for a given weapon
     """
 
-    weapon = args[0]
+    weapon = " ".join(args)
 
     repeats = 1
     rolls = {}
