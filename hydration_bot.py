@@ -15,7 +15,8 @@ load_dotenv()
 TOKEN = HB_KEY
 GUILD = SERVER
 
-client = discord.Client()
+intents = discord.Intents.all()
+client = discord.Client(intents=intents)
 
 # so tldr just make functions like on_ready, on_message, etc
 # add the @client.event tag (decorator?) before each one
@@ -52,6 +53,26 @@ async def on_ready():
 
 
 @client.event
+async def on_member_join(member):
+    print("member joined:", member)
+    role = discord.utils.get(member.guild.roles, name="LFG-Recruits")
+    await member.add_roles(role)
+
+    channel = discord.utils.get(member.guild.text_channels, name="general")
+    member_mention = member.mention
+
+    bot_channel = discord.utils.get(member.guild.text_channels, name="mute-this-bot-commands").mention
+    me = discord.utils.get(member.guild.members, name="EatYoWaffles").mention
+
+    with open("junk/welcome.txt") as f:
+        text = f.read()
+
+    welcome = text.format(**locals()) 
+
+    await channel.send(welcome)
+
+
+@client.event
 async def on_message(message):
     """
     Handle messages
@@ -66,6 +87,12 @@ async def on_message(message):
 
     print("message received: ", message.author, flush=True)
     
+    if len(message.content) == 0:
+        return
+
+    if message.author == client.user:
+        return
+
     # get admin status
     if message.author.top_role.name == "OTRN":
         admin = True
@@ -73,8 +100,6 @@ async def on_message(message):
         admin = False
 
     # in case your bot is the one saying the thing, just prevent endless recursion
-    if message.author == client.user:
-        return
 
     if message.content[0] == '$':
         # command

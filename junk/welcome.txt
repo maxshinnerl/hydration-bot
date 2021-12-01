@@ -1,0 +1,9 @@
+Welcome {member_mention}!
+
+I am a homemade bot for this server, developed by our server admin {me}.  I am linked up to Destiny 2's database, and you can use me to run lots of fun commands using the data!
+
+Type "$help" to see a list of my bot commands.  If you're confused on how to use the command, type "$usage <command>" for an explanation.
+
+Use the {bot_channel} for running commands -- everyone should have this channel muted so you don't have to worry about spam!
+
+Welcome in, gamer.  o7
