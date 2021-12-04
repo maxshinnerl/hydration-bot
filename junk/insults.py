@@ -2,7 +2,6 @@ def get_insults(sender, receiver):
     insults = [
         receiver + ", you look like someone who can ear with both ears",
         receiver + ", you ever seen a big toe?  Yeah I bet you have ;)",
-        receiver + ", are you sponsored by Doom's Lumpy Milk? Just curious",
         receiver + ", you put the 'u' in P-U (it's because you smell)",
         receiver + ", just a reminder that Matt smells",
         receiver + ", " + sender + " thinks you are cringe and NOT based",
