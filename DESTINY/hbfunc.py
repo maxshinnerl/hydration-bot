@@ -2,6 +2,7 @@
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import requests
 
 import helpers
 
@@ -255,7 +256,7 @@ def perk(message, args, client, all_data, perk_dict):
     return response
 
 
-def rolls(message, args, client, all_data, weapon_dict):
+def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     """
     get all possible perk rolls for a given weapon
     """
@@ -288,7 +289,18 @@ def rolls(message, args, client, all_data, weapon_dict):
                 socketname = socketname[0].upper() + socketname[1:]
                 
             rolls[socketname] = list(perks)
+
+
+    if retstr is True:
+        return(rolls_format(rolls, weapon, weaptype))
+
+    return rolls # can specify retstr = False in parameters if you just want the dict back.
     
+
+def rolls_format(rolls, weapon, weaptype):
+    """
+    Get the response
+    """
     response = "**Weapon**\n" + weapon + " : " + weaptype + "\n\n"
     
     for key in rolls.keys():
@@ -300,3 +312,112 @@ def rolls(message, args, client, all_data, weapon_dict):
     response += "See the $perk command for details on any of the above"
     return response
 
+
+def rollable(weapon, weapon_dict, all_data):
+    """
+    Return true if weapon is legendary and is not sunset
+    """
+    if (weapon_dict[weapon][0]['inventory']['tierType'] == 5) & \
+       (all_data['DestinyPowerCapDefinition'][weapon_dict[weapon][0]['quality']['versions'][0]['powerCapHash']]['powerCap'] == 999990):
+        
+        return True
+    
+    return False
+
+
+# TODO.  I'm not sure how to find possible masterworks, it's encoded pretty weirdly.
+def masterworks(weapon, weapon_dict):
+    """
+    Return possible masterworks for a weapon.
+    """
+    
+    # ok I give up, I'm hardcoding the masterworks dict
+    """
+    Guide:
+    0 -- normal (basically anything that shoots bullets)
+    1 -- fusions (normal + charge time)
+    2 -- bows (normal - range + accuracy + draw time)
+    3 -- explosives (normal - range + velocity + blast radius)
+    4 -- sword (impact only)
+    """
+
+    mw_dict = {
+               0:["Range", "Stability", "Handling", "Reload Speed"],
+               1:["Range", "Stability", "Handling", "Reload Speed", "Charge Time"],
+               2:["Stability", "Handling", "Reload Speed", "Draw Time", "Accuracy"],
+               3:["Stability", "Handling", "Reload Speed", "Velocity", "Blast Radius"],
+               4:["Impact"]
+              }
+    
+    arch = weapon_dict[weapon][0]['itemTypeDisplayName']
+    
+    
+    # tree time baby
+    if "Fusion" in arch:
+        arch_hash = 1
+    
+    elif "Bow" in arch:
+        arch_hash = 2
+        
+    elif "Launcher" in arch:
+        arch_hash = 3
+        
+    elif "Sword" in arch:
+        arch_hash = 4
+    
+    else:
+        arch_hash = 0
+        
+    return mw_dict[arch_hash]
+
+
+def get_icon(path):
+    """
+    Go to weapon icon url and download it into images/icon.png
+    """
+    
+    path = "https://www.bungie.net" + path
+    r = requests.get(path)
+    with open("images/icon.png", 'wb') as f:
+        f.write(r.content)
+
+
+# in production this will need the usual params
+def engram(all_data, weapon_dict):
+    """
+    Random roll, random legendary (non-sunset)
+    """
+    legendary_dict = {k:v for k,v in weapon_dict.items() if rollable(k, weapon_dict, all_data)}
+    
+    # perks command is bugged, some weapons return empty.  This just re-rolls until you get a good one.
+    # temporary fix
+    
+    perks = {}
+    while (len(perks.keys()) == 0):   
+    
+        rand = np.random.randint(len(legendary_dict))
+        randweap = list(legendary_dict.keys())[rand]
+        perks = rolls(None, randweap.split(" "), None, all_data, weapon_dict, retstr=False)
+
+    response = randweap
+    arch = weapon_dict[randweap][0]['itemTypeDisplayName']
+    response += " : " + arch + "\n"
+    
+    
+    for key in perks.keys():
+        rand = np.random.randint(len(perks[key]))
+        response += perks[key][rand] + " | "
+        
+    response = response[:-3]
+        
+    # get masterwork
+    mw_list = masterworks(randweap, weapon_dict)
+    rand = np.random.randint(len(mw_list))
+    rand_mw = mw_list[rand]
+    
+    response += "\nMasterwork: " + rand_mw
+    
+    # get PNG of weapon
+    get_icon(weapon_dict[randweap][0]['displayProperties']['icon'])
+    
+    return response

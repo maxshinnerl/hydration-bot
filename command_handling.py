@@ -52,6 +52,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
 
     if command == '$rolls':
         response = hbfunc.rolls(message, args, client, all_data, weapon_dict)
+
+    if command == '$engram':
+        response = hbfunc.engram(all_data, weapon_dict)
     
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args

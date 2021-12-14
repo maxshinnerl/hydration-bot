@@ -1,3 +1,4 @@
--Check permission level on commands, i.e. only let admins use $move
--Actual hydration stuff lol
--
+- Actual hydration stuff
+- Bug in perks command: some weapons i.e. Timelost weapons, Subzero Salvo, etc. don't have "randomizedPlugSetHash".  Don't know why.  But this causes perks() to return empty for them.
+
+
