@@ -9,6 +9,7 @@ For all members:
  - $sametype -- Get all weapons in the game of the same archetype of given weapon
  - $perk   -- Get details on a weapon perk
  - $rolls  -- See all possible rolls a weapon can get
+ - $engram -- Get a random legendary weapon roll
 
  Note: Destiny Specific commands are CASE SENSITIVE
  TIP: Look in collections for correct capitalization.
