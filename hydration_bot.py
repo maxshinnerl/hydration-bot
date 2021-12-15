@@ -1,13 +1,16 @@
 import discord
+from discord.ext import tasks
 import os
 from dotenv import load_dotenv
 import numpy as np
+import datetime
 
 from api_keys import *
 from command_handling import *
 
 from DESTINY import basics
 from DESTINY import manifestation
+from TWITTER import tweetie
 
 load_dotenv()
 
@@ -70,6 +73,29 @@ async def on_member_join(member):
     welcome = text.format(**locals()) 
 
     await channel.send(welcome)
+
+
+@tasks.loop(seconds = 60)
+async def daily_reset_grab():
+    now = datetime.datetime.now().time().strftime("%H:%M") 
+
+    # set the time below to like 5 minutes after reset
+    # may have to update after daylight savings
+    # basically either 09:05 or 10:05 (leading zero needed)
+    if now == "09:05":
+        api = tweetie.authenticate()
+        tweets = tweetie.get_todays_di_tweets(api)
+        
+        breakline = "---------------------\n\n"
+        response = ""
+        for i, tweet in enumerate(tweets):
+            response += tweet
+            if i < len(tweets) - 1:
+                response += breakline
+
+        # id for destiny text channel
+        channel = client.get_channel(853842181759434793)
+        await channel.send(response)
 
 
 @client.event
@@ -157,5 +183,5 @@ async def on_message(message):
     if response is not None:    
         await message.channel.send(response)
 
-
+daily_reset_grab.start()
 client.run(TOKEN)
