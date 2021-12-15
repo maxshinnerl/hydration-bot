@@ -23,7 +23,7 @@ def authenticate():
     auth = tweepy.OAuthHandler(keys[0], keys[1])
     auth.set_access_token(keys[2], keys[3])
 
-    api = tweepy.API(auth, wait_on_rate_limit=True)
+    api = tweepy.API(auth, wait_on_rate_limit=True,  wait_on_rate_limit_notify=True)
     
     return api
 
@@ -74,7 +74,8 @@ def get_todays_di_tweets(api):
 
 
 if __name__ == "__main__":
-    tweets = get_todays_di_tweets(authenticate())
+    api = authenticate()
+    tweets = get_todays_di_tweets(api)
 
     for tweet in tweets:
         print(tweet)
