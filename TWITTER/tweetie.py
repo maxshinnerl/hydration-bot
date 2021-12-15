@@ -23,7 +23,7 @@ def authenticate():
     auth = tweepy.OAuthHandler(keys[0], keys[1])
     auth.set_access_token(keys[2], keys[3])
 
-    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
     
     return api
 
