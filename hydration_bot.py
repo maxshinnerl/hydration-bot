@@ -84,6 +84,7 @@ async def daily_reset_grab():
     # basically either 09:05 or 10:05 (leading zero needed)
 
     # NOTE: EC2 runs on GMT.  +8 hours.  At least we don't have to convert savings time?
+    # Reset is at 17:00 GMT.   Adjust accordingly
     if now == "17:05":
         api = tweetie.authenticate()
         tweets = tweetie.get_todays_di_tweets(api)
