@@ -70,6 +70,7 @@ def get_todays_di_tweets(api):
                 tweets.append(lines)
 
 
+    tweets.append("Source: destinyinsights on Twitter: " +  api.get_user(name).url)
     return tweets
 
 
