@@ -54,7 +54,6 @@ def get_todays_di_tweets(api):
     for status in tweepy.Cursor(api.user_timeline, tweet_mode = "extended", id=name).items(10):
         if is_today(status.created_at.date()):
             if ("Xur" in status.full_text) or \
-               ("Banshee" in status.full_text) or \
                ("Ada-1" in status.full_text):
                 
                 text = status.full_text
