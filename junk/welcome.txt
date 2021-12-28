@@ -6,4 +6,4 @@ Type "$help" to see a list of my bot commands.  If you're confused on how to use
 
 Use the {bot_channel} channel for running commands -- everyone should have this channel muted so you don't have to worry about spam!
 
-Welcome in, gamer.  o7
+o7
