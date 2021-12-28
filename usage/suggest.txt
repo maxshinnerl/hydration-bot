@@ -1,0 +1,8 @@
+Correct usage for $suggest command:
+
+$suggest <text>
+
+Example:
+
+$suggest Drink water
+$suggest hydrate or die-drate

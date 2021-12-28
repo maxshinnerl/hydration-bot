@@ -56,6 +56,12 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
     if command == '$engram':
         response = hbfunc.engram(all_data, weapon_dict)
     
+    if command == '$suggest':
+        response = suggest(message, args)
+
+    if command == '$suggestions':
+        response = suggestions()
+
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
      

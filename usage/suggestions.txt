@@ -1,0 +1,5 @@
+Correct usage for $suggestions command:
+
+$suggestions
+
+That's it :)

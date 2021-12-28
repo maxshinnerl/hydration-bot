@@ -119,3 +119,30 @@ def usage(message, args, client):
     return response
 
 
+def suggest(message, args):
+    """
+    Take in a suggestion, append it to the SUGGESTIONS/suggest.txt file.
+    """
+
+    author = message.author.name
+    print(author, flush=True)
+
+    if len(args) > 0:
+        response = "Added to suggestion box (not a paper shredder)"
+    else:
+        return "No suggestion detected.  Be better."
+
+    suggestion = " ".join(args)
+    with open("SUGGESTIONS/suggestion.txt", "a") as f:
+        f.write("(" + author + ") -- " + suggestion + "\n\n")
+
+    return response
+
+def suggestions():
+    """
+    Print out current suggestions to discord.
+    """
+    with open("SUGGESTIONS/suggestion.txt", "r") as f:
+        response = f.read()
+
+    return response
