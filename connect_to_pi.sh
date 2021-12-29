@@ -1,0 +1,1 @@
+ssh pi@maxberrypi1
