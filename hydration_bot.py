@@ -176,6 +176,9 @@ async def on_message(message):
         elif command == "$engram":
             await message.channel.send(file=discord.File(f'images/icon.png'))
 
+        elif command == "$our":
+            await message.channel.send(file=discord.File("junk/our_edited.jpg"))
+
     # Hello world example
     if message.content.lower() == 'matt is stinky':
         response = "super stinky, take a shower stinky.  Also drink water"

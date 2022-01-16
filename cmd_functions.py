@@ -6,6 +6,8 @@ from junk.flirts import *
 from junk.insults import *
 from hard_coded.voice_channel_ids import *
 
+from PIL import Image, ImageFont, ImageDraw
+
 """
 File for all functions relating to commands
 
@@ -138,6 +140,7 @@ def suggest(message, args):
 
     return response
 
+
 def suggestions():
     """
     Print out current suggestions to discord.
@@ -146,3 +149,21 @@ def suggestions():
         response = f.read()
 
     return response
+
+
+def our(text):
+    """
+    Text is to be added to image
+    """
+    text = "our " + " ".join(text)
+    
+    img = Image.open("junk/our.jpg")
+    font = ImageFont.truetype("junk/truetypes/impact.ttf", 100)
+    image_editable = ImageDraw.Draw(img)
+    
+    w, h = image_editable.textsize(text)
+    
+    image_editable.text(((350-w)/2,(h)/2), text, font=font)
+    image_editable
+    img.save("junk/our_edited.jpg")
+    
