@@ -88,7 +88,7 @@ async def daily_reset_grab():
 
     # Now with Pi:  09:05 should be correct (until daylight savings)
 
-    if now == "09:05":
+    if now == "11:00":
         api = tweetie.authenticate()
         tweets = tweetie.get_todays_di_tweets(api)
         
