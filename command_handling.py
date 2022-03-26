@@ -65,6 +65,15 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
     if command == '$our':
         our(args)
 
+    if command == '$split':
+        ret_args = split_teams(client)
+        response = "Splitting teams..."
+
+    if command == '$finish':
+        ret_args = finish_game(client)
+        response = "Bringing everyone back..."
+        
+
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
      

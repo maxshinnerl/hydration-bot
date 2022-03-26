@@ -8,6 +8,8 @@ from hard_coded.voice_channel_ids import *
 
 from PIL import Image, ImageFont, ImageDraw
 
+from sklearn.model_selection import train_test_split
+
 """
 File for all functions relating to commands
 
@@ -85,6 +87,47 @@ def joinleave(message, args, client):
     ret_args = []
     ret_args.append(origin_channel)
     return response, ret_args
+
+
+def split_teams(client):
+    """
+    Split people in waiting-room into teams and move to alpha/bravo
+    """
+    waiting_room = client.get_channel(957378114189664266) # Waiting-Room
+    alpha_channel = client.get_channel(957378187850035201) # Alpha
+    bravo_channel = client.get_channel(957378227960168499) # Bravo
+
+    member_ids = list(waiting_room.voice_states.keys())
+
+    alpha_team, bravo_team = train_test_split(member_ids, train_size=0.5)
+ 
+    ret_args = {}
+    ret_args["waiting_room"]  = waiting_room
+    ret_args["alpha_channel"] = alpha_channel
+    ret_args["bravo_channel"] = bravo_channel
+    ret_args["alpha_team"]    = alpha_team
+    ret_args["bravo_team"]    = bravo_team
+
+    return ret_args
+
+
+def finish_game(client):
+    """
+    Move people back into waiting room
+    """
+    waiting_room = client.get_channel(957378114189664266) # Waiting-Room
+    alpha_channel = client.get_channel(957378187850035201) # Alpha
+    bravo_channel = client.get_channel(957378227960168499) # Bravo
+
+    alpha_ids = list(alpha_channel.voice_states.keys())
+    bravo_ids = list(bravo_channel.voice_states.keys())
+    member_ids = alpha_ids + bravo_ids
+
+    ret_args = {}
+    ret_args["waiting_room"]  = waiting_room
+    ret_args["memberids"]     = member_ids
+    
+    return ret_args
 
 
 def command_list(message, args, client):

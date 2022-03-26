@@ -158,6 +158,24 @@ async def on_message(message):
                 print(clnt, flush=True)
                 await clnt.disconnect()
 
+        
+        elif (command == "$split") and (admin is True):
+            # move alpha
+            for memberid in args['alpha_team']:
+                member = await BAguild.fetch_member(memberid)
+                await member.move_to(args['alpha_channel'])
+
+            # move bravo
+            for memberid in args['bravo_team']:
+                member = await BAguild.fetch_member(memberid)
+                await member.move_to(args['bravo_channel'])
+
+        elif (command == "$finish") and (admin is True):
+            # move everyone back
+            for memberid in args['memberids']:
+                member = await BAguild.fetch_member(memberid)
+                await member.move_to(args['waiting_room'])
+            
         elif command == "$compare":
 
             if response == "Generated":
