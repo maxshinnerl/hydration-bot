@@ -105,8 +105,7 @@ async def daily_reset_grab():
         await channel.send(response)
 
 
-    # Let's also do lost sectors
-    if now == "11:48":
+        # Let's also do lost sectors
         sector, reward = get_lost_sectors()
         response = "Lost Sector Today: " + sector + "\nDropping: " + reward
         response += "\n\nSource: Today in Destiny: https://www.todayindestiny.com/"
