@@ -3,6 +3,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 import requests
+from bs4 import BeautifulSoup
 
 import helpers
 
@@ -421,3 +422,14 @@ def engram(all_data, weapon_dict):
     get_icon(weapon_dict[randweap][0]['displayProperties']['icon'])
     
     return response
+
+
+def get_lost_sectors():
+    r = requests.get("https://www.todayindestiny.com/")
+    soup = BeautifulSoup(r.text, "html.parser")
+    important = soup.find_all("div", id=lambda x: x and x.startswith("lost_sector"))
+    
+    sector = important[0].find_all(class_="eventCardHeaderName")[0].get_text()
+    reward = important[0].find_all(class_="eventCardDatabaseItemDescription")[-1].get_text()
+    
+    return sector, reward

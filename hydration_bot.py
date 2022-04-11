@@ -10,6 +10,7 @@ from command_handling import *
 
 from DESTINY import basics
 from DESTINY import manifestation
+from DESTINY.hbfunc import get_lost_sectors
 from TWITTER import tweetie
 
 load_dotenv()
@@ -88,7 +89,7 @@ async def daily_reset_grab():
 
     # Now with Pi:  09:05 should be correct (until daylight savings)
 
-    if now == "11:00":
+    if now == "10:05":
         api = tweetie.authenticate()
         tweets = tweetie.get_todays_di_tweets(api)
         
@@ -102,6 +103,17 @@ async def daily_reset_grab():
         # id for destiny text channel
         channel = client.get_channel(853842181759434793)
         await channel.send(response)
+
+
+    # Let's also do lost sectors
+    if now == "11:48":
+        sector, reward = get_lost_sectors()
+        response = "Lost Sector Today: " + sector + "\nDropping: " + reward
+        response += "\n\nSource: Today in Destiny: https://www.todayindestiny.com/"
+
+        channel = client.get_channel(853842181759434793) # testing with muted channel, switch to destiny later
+        await channel.send(response)
+
 
 
 @client.event
