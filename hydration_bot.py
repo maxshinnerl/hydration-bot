@@ -133,6 +133,7 @@ async def on_message(message):
     if len(message.content) == 0:
         return
 
+    # in case your bot is the one saying the thing, just prevent endless recursion
     if message.author == client.user:
         return
 
@@ -142,7 +143,13 @@ async def on_message(message):
     else:
         admin = False
 
-    # in case your bot is the one saying the thing, just prevent endless recursion
+    # clean message (for stinky mobile users)
+    message.content = message.content.replace("‘", "'")
+    message.content = message.content.replace("`", "'")
+    message.content = message.content.replace("‘", "'")
+    message.content = message.content.replace("'", "'")
+    message.content = message.content.replace("’", "'")
+
 
     if message.content[0] == '$':
         # command
