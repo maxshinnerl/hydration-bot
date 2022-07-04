@@ -191,7 +191,7 @@ def sametype(message, args, client, all_data, weapon_dict):
     samesies = []
     for w in weapon_dict.keys():
         if w == name or w == "Vex Mythoclast":
-IKELOS_SMG_v1.0.2            # bite me
+            # bite me
             continue
             
         if weapon_dict[w][0]['itemTypeDisplayName'] == weap_type:
