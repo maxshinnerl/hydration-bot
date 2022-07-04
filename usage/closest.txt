@@ -1,0 +1,9 @@
+Example usage for $closest command:
+
+$closest IKELOS SMG
+
+Response:
+FOUND THE FOLLOWING:
+IKELOS_SMG_v1.0.2
+IKELOS_SMG_v1.0.1
+IKELOS_SG_v1.0.2

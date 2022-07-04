@@ -1,0 +1,5 @@
+Example usage for split command:
+
+$split
+
+That's it :)

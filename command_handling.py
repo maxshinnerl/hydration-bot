@@ -72,6 +72,15 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
     if command == '$finish':
         ret_args = finish_game(client)
         response = "Bringing everyone back..."
+
+    if command == '$closest':
+        ret_args = hbfunc.get_closest_gun(message, args, client, all_data, weapon_dict)
+        if len(ret_args) == 0:
+            response = "Not recognized"
+        else:
+            response = "**Found the following:**"
+            for w in ret_args:
+                response += "\n" + w
         
 
     # messages need to be sent in an async function, do that in main

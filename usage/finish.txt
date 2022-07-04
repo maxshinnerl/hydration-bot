@@ -1,0 +1,5 @@
+Example usage for finish command:
+
+$finish
+
+That's it :)

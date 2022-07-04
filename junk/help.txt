@@ -1,8 +1,12 @@
+**For instructions on using commands, see $usage**
+Example: $usage $flirt
+
 List of available commands:
 
 For all members:
 
  Destiny Specific:
+ - $closest -- Show correct spelling for a weapon (REQUIRED FOR OTHER COMMANDS)
  - $weapstat -- show stats of a specified Destiny 2 weapon
  - $recoil   -- recommend counterbalance mod for specified Destiny 2 weapon
  - $compare  -- Show comparison of two specified weapons (visualization)
@@ -12,7 +16,7 @@ For all members:
  - $engram -- Get a random legendary weapon roll
 
  Note: Destiny Specific commands are CASE SENSITIVE
- TIP: Look in collections for correct capitalization.
+ TIP: See the $closest command, OR use the collections tab in game.
 
  General:
  - $flirt    -- send a funny message to someone
@@ -22,6 +26,10 @@ For all members:
  - $sausage  -- ?
  - $suggest  -- Add suggestion for Bot features
  - $suggestions -- See list of current suggestions
+ - $our -- get bugs bunny communist meme for input text
+ - $split -- split people in "Waiting-Room" channel into two teams
+ - $finish -- bring everyone back into "Waiting-Room"
+
 
 For admins:
  - $move     -- move all members from one voice channel to another

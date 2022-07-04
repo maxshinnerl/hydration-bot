@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import requests
 from bs4 import BeautifulSoup
+import difflib
 
 import helpers
 
@@ -433,3 +434,13 @@ def get_lost_sectors():
     reward = important[0].find_all(class_="eventCardDatabaseItemDescription")[-1].get_text()
     
     return sector, reward
+
+
+def get_closest_gun(message, args, client, all_data, weapon_dict):
+    words = list(weapon_dict.keys())
+
+    name = " ".join(args)
+
+    closest = difflib.get_close_matches(name, words)
+
+    return closest

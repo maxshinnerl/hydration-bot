@@ -1,0 +1,5 @@
+Usage for $our command:
+
+$our diamonds
+
+Output is an image
