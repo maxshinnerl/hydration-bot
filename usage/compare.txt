@@ -6,4 +6,3 @@ Examples:
 $compare The Palindrome (Adept) & Fatebringer (Timelost)
 $compare The Hothead & Tomorrow's Answer
 
-NOTE: This is a CASE SENSITIVE command (capitalization matters)

@@ -6,17 +6,15 @@ List of available commands:
 For all members:
 
  Destiny Specific:
- - $closest -- Show correct spelling for a weapon (REQUIRED FOR OTHER COMMANDS)
+ - $closest -- Show correct spelling for a weapon
  - $weapstat -- show stats of a specified Destiny 2 weapon
  - $recoil   -- recommend counterbalance mod for specified Destiny 2 weapon
  - $compare  -- Show comparison of two specified weapons (visualization)
  - $sametype -- Get all weapons in the game of the same archetype of given weapon
- - $perk   -- Get details on a weapon perk
+ - $perk   -- Get details on a weapon perk (CASE SENSITIVE)
  - $rolls  -- See all possible rolls a weapon can get
  - $engram -- Get a random legendary weapon roll
 
- Note: Destiny Specific commands are CASE SENSITIVE
- TIP: See the $closest command, OR use the collections tab in game.
 
  General:
  - $flirt    -- send a funny message to someone

@@ -6,4 +6,4 @@ def split_names(args):
     """
     fullstr = ' '.join(args)
     names = fullstr.split(' & ')
-    return names[0], names[1]
+    return names[0].split(" "), names[1].split(" ")  # RETURN IN LIST FORMAT (for the closest() call)

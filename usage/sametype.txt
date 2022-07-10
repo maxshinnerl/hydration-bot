@@ -6,4 +6,3 @@ Examples:
 $sametype Fatebringer
 $sametype The Palindrome (Adept)
 
-NOTE: Case sensitive command

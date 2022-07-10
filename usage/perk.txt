@@ -7,4 +7,4 @@ $perk Accurized Rounds
 $perk Fluted Barrel
 $perk Magnificent Howl
 
-NOTE: Destiny commands are CASE SENSITIVE.
+NOTE: This command is CASE SENSITIVE.

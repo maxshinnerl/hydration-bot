@@ -44,7 +44,9 @@ def weapstat(message, args, client, all_data, weapon_dict):
     Get weapon stats for given weapon
     """
 
-    weapon_name = " ".join(args)
+    #weapon_name = " ".join(args)
+    weapon_name = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
+
     stats = get_weapon_stats(weapon_name, all_data, weapon_dict)
 
     # no need for return arguments, just need to format the output
@@ -61,7 +63,9 @@ def recoil(message, args, client, all_data, weapon_dict):
     Gives recommendation on counterbalance mod.
     """
 
-    weapon_name = " ".join(args)
+    #weapon_name = " ".join(args)
+    weapon_name = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
+
     stats = get_weapon_stats(weapon_name, all_data, weapon_dict)
 
     if "Recoil Direction" not in stats.keys():
@@ -119,6 +123,9 @@ def compare(message, args, client, all_data, weapon_dict):
     # split on & sign
 
     w1, w2 = helpers.split_names(args)
+    
+    w1 = get_closest_gun(message, w1, client, all_data, weapon_dict)[0]
+    w2 = get_closest_gun(message, w2, client, all_data, weapon_dict)[0]
 
     w1_stats = get_weapon_stats(w1, all_data, weapon_dict)
     w2_stats = get_weapon_stats(w2, all_data, weapon_dict)
@@ -169,7 +176,8 @@ def sametype(message, args, client, all_data, weapon_dict):
     Will prioritize RPM in this case.  annoying lol
     """
 
-    name = " ".join(args)
+    # name = " ".join(args)
+    name = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
 
     stats = get_weapon_stats(name, all_data, weapon_dict)
     weap_type = weapon_dict[name][0]['itemTypeDisplayName']
@@ -263,7 +271,8 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     get all possible perk rolls for a given weapon
     """
 
-    weapon = " ".join(args)
+    #weapon = " ".join(args)
+    weapon = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
 
     repeats = 1
     rolls = {}

@@ -7,5 +7,3 @@ Examples:
 $weapstat The Palindrome
 $weapstat Eye of Sol (Adept)
 $weapstat Bygones
-
-NOTE: This command IS case sensitive (upper/lower case matters).

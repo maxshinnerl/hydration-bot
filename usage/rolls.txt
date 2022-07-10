@@ -5,5 +5,3 @@ $rolls <weapon>
 Example:
 $rolls Fatebringer
 $rolls The Palindrome (Adept)
-
-NOTE: Destiny 2 commands are case-sensitive: check your capitalization!  See in-game collections tab for correct capitalization
