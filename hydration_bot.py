@@ -13,6 +13,8 @@ from DESTINY import manifestation
 from DESTINY.hbfunc import get_lost_sectors
 from TWITTER import tweetie
 
+import textless
+
 load_dotenv()
 
 # from api_keys.py
@@ -130,8 +132,17 @@ async def on_message(message):
 
     print("message received: ", message.author, flush=True)
     
-    if len(message.content) == 0:
+    if (len(message.content) == 0) and (len(message.attachments)==0):
+            return
+
+    elif len(message.content) == 0:
+        # textless attachment
+        response = textless.process(message)
+        if response is not None:    
+            await message.channel.send(response)
+
         return
+
 
     # in case your bot is the one saying the thing, just prevent endless recursion
     if message.author == client.user:
@@ -194,6 +205,7 @@ async def on_message(message):
                 member = await BAguild.fetch_member(memberid)
                 await member.move_to(args['waiting_room'])
             
+
         elif command == "$compare":
 
             if response == "Generated":
@@ -224,9 +236,9 @@ async def on_message(message):
         if rndm == 0:
             response = "omg he's doing the pog face XDDDDDDDD"
 
+
     if is_sheesh(message.content.lower()) is True:
         response = "🥶"
-
 
     if response is not None:    
         await message.channel.send(response)
