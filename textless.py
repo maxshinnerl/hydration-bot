@@ -6,6 +6,7 @@ import numpy as np
 import random
 
 def process(message):
+    print("PROCESSING", flush=True)
     response = None
 
     if str(message.channel) == "fashion":

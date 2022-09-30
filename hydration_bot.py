@@ -133,10 +133,11 @@ async def on_message(message):
     print("message received: ", message.author, flush=True)
     
     if (len(message.content) == 0) and (len(message.attachments)==0):
+            print("EMPTY", flush=True)
             return
 
     elif len(message.content) == 0:
-        # textless attachment
+        print("TEXTLESS ATTACHMENT")
         response = textless.process(message)
         if response is not None:    
             await message.channel.send(response)
