@@ -1,13 +1,9 @@
-import discord
-import numpy as np
 import random
 
 from junk.flirts import *
 from junk.insults import *
+from junk.our import Our
 from hard_coded.voice_channel_ids import *
-
-from PIL import Image, ImageFont, ImageDraw
-
 from sklearn.model_selection import train_test_split
 
 """
@@ -198,15 +194,6 @@ def our(text):
     """
     Text is to be added to image
     """
-    text = "our " + " ".join(text)
-    
-    img = Image.open("junk/our.jpg")
-    font = ImageFont.truetype("junk/truetypes/impact.ttf", 100)
-    image_editable = ImageDraw.Draw(img)
-    
-    w, h = image_editable.textsize(text)
-    
-    image_editable.text(((350-w)/2,(h)/2), text, font=font)
-    image_editable
-    img.save("junk/our_edited.jpg")
+    communism = Our()
+    communism.make_image(text)
     
