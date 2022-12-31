@@ -70,7 +70,7 @@ class Our:
 
         :param str text: The text of which to put on the communism meme.
         """
-        text = f"our {text}"
+        text = "our " + " ".join(text)
         wrapped_text, font = self.parse_wrapped_text(text)
         text_width = self.img.textlength(wrapped_text.replace("\n", ""))
         text_start = (350 - text_width) / 2
