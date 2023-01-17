@@ -32,7 +32,11 @@ def get_insults(sender, receiver):
         receiver + " -50 social credit",
         receiver + ", " + sender + " thinks you are the Bee's Elbows (this is an insult)",
         receiver + " does not respect the boundaries of the food channel",
-        receiver + " you look like you mix eggs with oatmeal (???)"
+        receiver + " you look like you mix eggs with oatmeal (???)",
+        receiver + " https://tenor.com/view/insult-noncursing-gif-9894176",
+        receiver + " https://tenor.com/view/love-i-like-you-i-dont-like-you-all-the-time-cute-kid-gif-16484196",
+        receiver + " https://tenor.com/view/you-smell-like-crap-you-stink-disgusting-stinky-take-a-bath-gif-17059185",
+        receiver + ", " + sender + " hopes your tendies are nice and soggy"
     ]
 
     return insults

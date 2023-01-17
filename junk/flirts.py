@@ -22,7 +22,12 @@ def get_flirts(sender, receiver):
               receiver + " You have been deemed: FLASHY",
               receiver + " seems like someone who respects the boundaries of the food channel",
               receiver + " +50 social credit",
-              receiver + ", " + sender + " thinks you're the Bee's Knees"
+              receiver + ", " + sender + " thinks you're the Bee's Knees",
+              receiver + "https://tenor.com/view/youre-fantastic-simon-cowell-britains-got-talent-youre-amazing-youre-awesome-gif-26152477",
+              receiver + "https://tenor.com/view/clap-gif-25211694",
+              receiver + "nice cock", # sorry
+              receiver + "looks like they respect the boundaries of the pets channel",
+              receiver + ", " + sender + " wishes you the crispiest of tendies"
               ]
 
 
