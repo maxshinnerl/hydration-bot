@@ -29,7 +29,9 @@ def get_fashion():
             "https://tenor.com/view/huh-confused-what-rabbit-cute-gif-15285567",
             "https://tenor.com/view/i-see-no-problem-here-crazy-eyes-gif-12788383",
             "https://tenor.com/view/chris-farley-shookt-mind-blown-surprised-schmitzgay-gif-9572236",
-            "https://tenor.com/view/spongebob-scared-scary-sad-gif-26439591"
+            "https://tenor.com/view/spongebob-scared-scary-sad-gif-26439591",
+            "Nice man :D",
+            "Ok but who asked",
     ]
 
 
