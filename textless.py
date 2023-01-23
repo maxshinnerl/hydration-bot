@@ -9,7 +9,7 @@ def process(message):
     print("PROCESSING", flush=True)
     response = None
 
-    if str(message.channel).isin(["fashion", "purgatory"]):
+    if str(message.channel) in ["fashion", "purgatory"]:
         fashion_response = fashion.get_fashion()
         response = random.choice(fashion_response)
 
