@@ -81,6 +81,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
             response = "**Found the following:**"
             for w in ret_args:
                 response += "\n" + w
+
+    if command == '$8ball':
+        ret_args = eightball()
         
 
     # messages need to be sent in an async function, do that in main
