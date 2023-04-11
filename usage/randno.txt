@@ -1,0 +1,9 @@
+Correct usage for $randno command:
+
+$randno <maximum>
+
+i.e.:
+
+$randno 4
+
+Output: random number between 1 and 4

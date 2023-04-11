@@ -27,6 +27,8 @@ For all members:
  - $our -- get bugs bunny communist meme for input text
  - $split -- split people in "Waiting-Room" channel into two teams
  - $finish -- bring everyone back into "Waiting-Room"
+ - $8ball -- I regret this command
+ - $randno -- Give randon number between 1 and number specified
 
 
 For admins:

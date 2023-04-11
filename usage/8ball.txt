@@ -1,0 +1,8 @@
+Correct usage for 8ball command:
+
+$8ball
+
+(can also put text after the command,  won't affect operation
+
+$8ball "Will Matt get laid tonight"
+Output: "Outlook unlikely"
