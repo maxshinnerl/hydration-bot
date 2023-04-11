@@ -357,7 +357,8 @@ def masterworks(weapon, weapon_dict):
                1:["Range", "Stability", "Handling", "Reload Speed", "Charge Time"],
                2:["Stability", "Handling", "Reload Speed", "Draw Time", "Accuracy"],
                3:["Stability", "Handling", "Reload Speed", "Velocity", "Blast Radius"],
-               4:["Impact"]
+               4:["Impact"],
+               5:["Range", "Handling", "Reload Speed", "Shield Duration"]
               }
     
     arch = weapon_dict[weapon][0]['itemTypeDisplayName']
@@ -375,6 +376,9 @@ def masterworks(weapon, weapon_dict):
         
     elif "Sword" in arch:
         arch_hash = 4
+
+    elif "Glaive" in arch:
+        arch_hash = 5
     
     else:
         arch_hash = 0
