@@ -230,7 +230,8 @@ async def on_message(message):
 
     # Hello world example
     if message.content.lower() == 'matt is stinky':
-        response = "super stinky, take a shower stinky.  Also drink water"
+        await message.channel.send(file=discord.File("junk/shower.txt"))
+        #response = "super stinky, take a shower stinky.  Also drink water"
 
     if (":o" in message.content.lower()) or ("😮" in message.content.lower()):
         rndm = np.random.randint(10)
