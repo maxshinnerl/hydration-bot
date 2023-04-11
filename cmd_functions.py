@@ -202,12 +202,20 @@ def our(text):
 def eightball():
     """
     Random 8ball response
-    """
-    """
+
     They made me code this one ok
     """
     eightballs = get_eightball_response()
     response = random.choice(eightballs)
 
     return response
+
+
+def randno(maximum):
+    """
+    Given maximum, give random number from 1 to maximum
+    """
+    return np.random.randint(maximum) + 1
+
+
 

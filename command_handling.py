@@ -84,6 +84,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
 
     if command == '$8ball':
         response = eightball()
+
+    if command == '$randno':
+        response = randno(args[0])
         
 
     # messages need to be sent in an async function, do that in main
