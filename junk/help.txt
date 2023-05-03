@@ -29,6 +29,7 @@ For all members:
  - $finish -- bring everyone back into "Waiting-Room"
  - $8ball -- I regret this command
  - $randno -- Give randon number between 1 and number specified
+ - $mc -- Multiple choice question. Example: $mc "What is the best destiny 2 class? A) Titans B) Warlocks C) Hunters"
 
 
 For admins:
