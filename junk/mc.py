@@ -10,6 +10,8 @@ def parse_args(args=None):
 
 
 def is_choice(word: str):
+    if len(word) == 1:
+        return False
     return word[0].isalpha() and word[1] == ")"
 
 
