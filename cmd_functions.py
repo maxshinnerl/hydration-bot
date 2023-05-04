@@ -6,6 +6,7 @@ from junk.our import Our
 from hard_coded.voice_channel_ids import *
 from sklearn.model_selection import train_test_split
 from junk.eightball import *
+from junk.mc import parse_mc_question
 
 """
 File for all functions relating to commands
