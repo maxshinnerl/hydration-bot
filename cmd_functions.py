@@ -218,4 +218,9 @@ def randno(maximum):
     return np.random.randint(maximum) + 1
 
 
-
+def mc(question: str):
+    """Multiple choice questions."""
+    response = parse_mc_question(" ".join(question))
+    if not response:
+        return "Could not find a choice. use a) choice1 b) choice2 c) choice 3."
+    return response
