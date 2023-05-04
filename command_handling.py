@@ -89,7 +89,7 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
         response = randno(args[0])
 
     if command == "$mc":
-        response = mc(message)
+        response = mc(args)
 
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
