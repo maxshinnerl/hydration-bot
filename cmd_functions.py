@@ -26,7 +26,7 @@ def flirt(message, args):
 
     else:
         # potentially choose a random response from a set
-        flirts = get_flirts(str(message.author)[:-5], args[0])
+        flirts = get_flirts(str(message.author), args[0])
         
         response = random.choice(flirts)
 
@@ -44,7 +44,7 @@ def insult(message, args):
         return
 
     else:
-        insults = get_insults(str(message.author)[:-5], args[0])
+        insults = get_insults(str(message.author), args[0])
         response = random.choice(insults)
 
     return response
