@@ -91,7 +91,7 @@ async def daily_reset_grab():
 
     # Now with Pi:  09:05 should be correct (until daylight savings)
 
-    if now == "12:29":
+    if now == "10:05":
 
         print("it's time!", flush=True)
         
