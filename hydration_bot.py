@@ -91,7 +91,12 @@ async def daily_reset_grab():
 
     # Now with Pi:  09:05 should be correct (until daylight savings)
 
-    if now == "10:05":
+    if now == "12:29":
+
+        print("it's time!", flush=True)
+        
+        # Twitter stuff, discontinuing for now (thanks Elon)
+        """
         api = tweetie.authenticate()
         tweets = tweetie.get_todays_di_tweets(api)
         
@@ -105,12 +110,20 @@ async def daily_reset_grab():
         # id for destiny text channel
         channel = client.get_channel(853842181759434793)
         await channel.send(response)
+        """
 
 
         # Let's also do lost sectors
-        sector, reward = get_lost_sectors()
-        response = "Lost Sector Today: " + sector + "\nDropping: " + reward
-        response += "\n\nSource: Today in Destiny: https://www.todayindestiny.com/"
+        sector, modifiers, armors, weapons = get_lost_sectors()
+        response = "**Lost Sector Today**\n" + sector + "\n\n"
+
+        response += "**Modifiers**\n" + "\n".join(modifiers) + "\n\n"
+
+        response += "**Armor**\n" + "\n".join(armors) + "\n\n"
+
+        response += "**Weapons**\n" +  "\n".join(weapons) + "\n\n"
+
+        response += "\nSource: Today in Destiny: https://www.todayindestiny.com/"
 
         channel = client.get_channel(853842181759434793) # testing with muted channel, switch to destiny later
         await channel.send(response)

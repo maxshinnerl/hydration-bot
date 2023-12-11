@@ -439,14 +439,46 @@ def engram(all_data, weapon_dict):
 
 
 def get_lost_sectors():
+    """
+    Updated for Season 23 (now drops world drop weapons)
+    """
+
     r = requests.get("https://www.todayindestiny.com/")
     soup = BeautifulSoup(r.text, "html.parser")
     important = soup.find_all("div", id=lambda x: x and x.startswith("lost_sector"))
-    
+
     sector = important[0].find_all(class_="eventCardHeaderName")[0].get_text()
-    reward = important[0].find_all(class_="eventCardDatabaseItemDescription")[-1].get_text()
     
-    return sector, reward
+    modifiers = []
+    armors = []
+    weapons = []
+
+    
+    collecting_modifiers = True
+    for i, line in enumerate(important[0].find_all(class_="manifest_item_tooltip_name")):
+    
+        ln = line.get_text()
+    
+        if "master modifiers" in ln.lower():
+            continue
+    
+        if sector.lower() in ln.lower():
+            collecting_modifiers = False
+            continue
+            
+        if collecting_modifiers is True:
+            modifiers.append(ln)
+
+        else:
+            # bottom four are weapons
+            if i < len(important[0].find_all(class_="manifest_item_tooltip_name")) - 4:
+                armors.append(ln)
+            else:
+                weapons.append(ln)
+        
+    return sector, modifiers, armors, weapons
+
+get_lost_sectors()
 
 
 def get_closest_gun(message, args, client, all_data, weapon_dict):
