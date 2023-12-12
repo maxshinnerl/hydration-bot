@@ -205,6 +205,9 @@ def names(message, args):
         with open("SUGGESTIONS/names.txt", "r") as f:
             response = f.read()
 
+        if len(response) == 0:
+            response = "No names on file"
+
         return response
 
     response = f"Added name: {name}"
