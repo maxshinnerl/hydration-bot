@@ -192,6 +192,29 @@ def suggestions():
     return response
 
 
+def names(message, args):
+    """
+    Take in a name, append it to the SUGGESTIONS/names.txt file.
+    """
+    name = " ".join(args)
+
+    author = message.author.name
+    print(author, flush=True)
+
+    if len(args) ==  0:
+        with open("SUGGESTIONS/names.txt", "r") as f:
+            response = f.read()
+
+        return response
+
+    response = f"Added name: {name}"
+
+    with open("SUGGESTIONS/names.txt", "a") as f:
+        f.write(name + " -- (" + author + ")" + "\n\n")
+
+    return response
+
+
 def our(text):
     """
     Text is to be added to image

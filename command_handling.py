@@ -62,6 +62,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
     if command == '$suggestions':
         response = suggestions()
 
+    if command == '$names':
+        response = names(message, args)
+
     if command == '$our':
         our(args)
 
