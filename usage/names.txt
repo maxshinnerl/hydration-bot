@@ -1,0 +1,13 @@
+Correct usage for $names command:
+
+To add name:
+$names <text>
+
+To list names:
+$names
+
+Example:
+
+$names matt_is_a_stinky_baby_boy 
+$names
+
