@@ -1,0 +1,9 @@
+Usage for $combo command
+
+Use to find all weapons that can roll two given perks together
+Currently only gives non-Y1 legendary weapons
+
+Example:
+
+$combo Demolitionist & Adrenaline Junkie
+$combo Ricochet Rounds & Osmosis
