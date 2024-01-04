@@ -235,7 +235,8 @@ def perk(message, args, client, all_data, perk_dict):
 
     response = ""
 
-    name = " ".join(args)
+    # can use closest gun for  perks too!
+    name = get_closest_gun(message, args,  client, all_data, perk_dict)
 
     if len(name) < 3:
         return None
@@ -482,6 +483,11 @@ get_lost_sectors()
 
 
 def get_closest_gun(message, args, client, all_data, weapon_dict):
+    """
+    Levenshtein (spelled wrong) distance for closest word in list
+
+    NOTE: can use this for perks, just pass it perk dict
+    """
     words = list(weapon_dict.keys())
 
     name = " ".join(args)
@@ -492,3 +498,50 @@ def get_closest_gun(message, args, client, all_data, weapon_dict):
         closest = difflib.get_close_matches(name.upper(), words)
 
     return closest
+
+
+def combo(args, all_data, weapon_dict, perk_dict):
+    """
+    Return weapons who can roll two given perks in different slots
+    """
+    perks = helpers.split_names(args)
+
+    perk1 = get_closest_gun(None, perks[0], None, None, perk_dict)[0]
+    perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)[0]
+
+    found_combos = []
+    for weap in weapon_dict.keys():
+        if weapon_dict[weap][0]['inventory']['tierTypeName'] != 'Legendary':
+            continue
+        possible_rolls = rolls(None, [weap], None, all_data, weapon_dict, retstr=False)
+
+        if len(possible_rolls) == 0:
+            continue
+
+        perk1found = False
+        perk2found = False
+        for column in possible_rolls:
+            if (perk1 in possible_rolls[column]):
+                perk1found = True
+                if (perk1found is True) and (perk2found is True):
+                    found_combos.append(weap)
+                continue
+            if (perk2 in possible_rolls[column]):
+                perk2found = True
+                if (perk1found is True) and (perk2found is True):
+                    found_combos.append(weap)
+                continue
+                
+            if (perk1found is True) and (perk2found is True):
+                found_combos.append(weap)
+
+    found_combos = list(np.unique(found_combos))
+
+    if len(found_combos) == 0:
+        return f"No legendary weapons found with {perk1} and {perk2} (in different columns)"
+
+    response = f'**LEGENDARY WEAPONS WITH {perk1} AND {perk2}** (in different columns)\n'
+    for gun in found_combos:
+        response += gun + "\n"
+
+    return response
