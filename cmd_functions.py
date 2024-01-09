@@ -33,10 +33,20 @@ def flirt(message, args):
     return response
 
 
-def insult(message, args):
+def insult(message, args, rebound=False):
     """
     They made me code this one ok
+
+    Rebound is True if insult is being called as a result from a different command
+    - in which case HBOt should insult the message author
     """
+
+    if rebound is True:
+        print(message.author)
+        insults = get_insults("HydrationBot", str(message.author)[:-2])
+        response = random.choice(insults)
+        return response
+
     if len(args) != 1:
         return
 

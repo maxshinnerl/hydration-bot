@@ -506,8 +506,17 @@ def combo(args, all_data, weapon_dict, perk_dict):
     """
     perks = helpers.split_names(args)
 
-    perk1 = get_closest_gun(None, perks[0], None, None, perk_dict)[0]
-    perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)[0]
+    perk1 = get_closest_gun(None, perks[0], None, None, perk_dict)#[0]
+    perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)#[0]
+
+    if (len(perk1) > 0) and (len(perk2) > 0):
+        perk1 = perk1[0]
+        perk2 = perk2[0]
+
+    else:
+        print("bad perk name(s)", flush=True)
+        return -1 # will trigger insult to sender
+
 
     found_combos = []
     for weap in weapon_dict.keys():
