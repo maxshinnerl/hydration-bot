@@ -277,10 +277,17 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
 
     repeats = 1
     rolls = {}
-    weaptype = weapon_dict[weapon][0]['itemTypeAndTierDisplayName']
+
+    # some weapons (raid, exotic, etc) have a different index for rolls
+    if len(weapon_dict[weapon]) > 1:
+        idx = 1
+    else:
+        idx = 0
+
+    weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName']
     
     # for socket (usually barrels, mags, perk1, perk2, etc)
-    for socket in weapon_dict[weapon][0]['sockets']['socketEntries']:
+    for socket in weapon_dict[weapon][idx]['sockets']['socketEntries']:
         # if random rolls
         if "randomizedPlugSetHash" in socket.keys():
             randhash = socket['randomizedPlugSetHash']
