@@ -236,7 +236,7 @@ def perk(message, args, client, all_data, perk_dict):
     response = ""
 
     # can use closest gun for  perks too!
-    name = get_closest_gun(message, args,  client, all_data, perk_dict)
+    name = get_closest_gun(message, args,  client, all_data, perk_dict)[0]
 
     if len(name) < 3:
         return None
