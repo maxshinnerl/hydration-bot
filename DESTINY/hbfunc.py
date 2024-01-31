@@ -513,6 +513,9 @@ def combo(args, all_data, weapon_dict, perk_dict):
     """
     perks = helpers.split_names(args)
 
+    if len(perks) < 2: 
+        return -1
+
     perk1 = get_closest_gun(None, perks[0], None, None, perk_dict)#[0]
     perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)#[0]
 
