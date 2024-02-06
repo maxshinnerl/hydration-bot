@@ -40,6 +40,7 @@ else:
 weapon_dict = manifestation.get_weapon_dict(all_data)
 perk_dict = manifestation.get_perk_dict(all_data)
 
+BIRTHDAY = False
 
 @client.event
 async def on_ready():
@@ -95,24 +96,6 @@ async def daily_reset_grab():
 
         print("it's time!", flush=True)
         
-        # Twitter stuff, discontinuing for now (thanks Elon)
-        """
-        api = tweetie.authenticate()
-        tweets = tweetie.get_todays_di_tweets(api)
-        
-        breakline = "---------------------\n\n"
-        response = ""
-        for i, tweet in enumerate(tweets):
-            response += tweet
-            if i < len(tweets) - 1:
-                response += breakline
-
-        # id for destiny text channel
-        channel = client.get_channel(853842181759434793)
-        await channel.send(response)
-        """
-
-
         # Let's also do lost sectors
         sector, modifiers, armors, weapons = get_lost_sectors()
         response = "**Lost Sector Today**\n" + sector + "\n\n"
@@ -125,9 +108,25 @@ async def daily_reset_grab():
 
         response += "\nSource: Today in Destiny: https://www.todayindestiny.com/"
 
-        channel = client.get_channel(853842181759434793) # testing with muted channel, switch to destiny later
+        channel = client.get_channel(853842181759434793) 
         await channel.send(response)
 
+
+    # birthday
+    m = datetime.datetime.now().month
+    d = datetime.datetime.now().day
+    y = datetime.datetime.now().year
+
+    if (m == 8) and (d == 31):
+        # check if you've announced birthday yet
+        if BIRTHDAY is False:
+            response = "It's my birthday, I am now" + str(y - 2021) + " years old."
+            channel = client.get_channel(875160886585720884) # random
+            await channel.send(response)
+            BIRTHDAY=True
+
+    if m == 9:
+        BIRTHDAY = False
 
 
 @client.event
