@@ -8,6 +8,8 @@ from sklearn.model_selection import train_test_split
 from junk.eightball import *
 from junk.mc import parse_mc_question
 
+import numpy as np
+
 """
 File for all functions relating to commands
 
