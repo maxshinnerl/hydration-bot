@@ -137,12 +137,16 @@ def compare(message, args, client, all_data, weapon_dict):
     # remove rate of fire
     # TODO test for other names and also put the RoF somewhere in the plot
     if "Rounds Per Minute" in w1_stats.keys():
+        w1 += f" (RPM : {w1_stats['Rounds Per Minute']})"
+        w2 += f" (RPM : {w2_stats['Rounds Per Minute']})"
         del w1_stats["Rounds Per Minute"]
         del w2_stats["Rounds Per Minute"]
 
-    if "Charge Rate" in w1_stats.keys():
-        del w1_stats["Charge Rate"]
-        del w2_stats["Charge Rate"]
+    if "Charge Time" in w1_stats.keys():
+        w1 += f" (CT : {w1_stats['Charge Time']})"
+        w2 += f" (CT : {w2_stats['Charge Time']})"
+        del w1_stats["Charge Time"]
+        del w2_stats["Charge Time"]
 
     
     labels = list(w1_stats.keys())[2:]
