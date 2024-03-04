@@ -279,6 +279,7 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     rolls = {}
 
     # some weapons (raid, exotic, etc) have a different index for rolls
+    # fixed for weapdict size 4
     if len(weapon_dict[weapon]) == 4:
         idx = 2
     elif len(weapon_dict[weapon]) == 3:
