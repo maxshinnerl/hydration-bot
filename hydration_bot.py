@@ -176,6 +176,13 @@ async def on_message(message):
 
 
     if message.content[0] == '$':
+
+        # if long command, warn user
+        command = message.content.split(" ")[0]
+        if command in ["$combo"]:
+            await message.channel.send(f"{command} call received, please wait a few seconds")
+            
+
         # command
         command, response, args = command_handler(message,
                                                   client,
