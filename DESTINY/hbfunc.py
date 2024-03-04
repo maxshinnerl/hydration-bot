@@ -133,6 +133,17 @@ def compare(message, args, client, all_data, weapon_dict):
     if w1_stats.keys() != w2_stats.keys():
         response = "Weapons too different to compare"
         return response
+
+    # remove rate of fire
+    # TODO test for other names and also put the RoF somewhere in the plot
+    if "Rounds Per Minute" in w1_stats.keys():
+        del w1_stats["Rounds Per Minute"]
+        del w2_stats["Rounds Per Minute"]
+
+    if "Charge Rate" in w1_stats.keys():
+        del w1_stats["Charge Rate"]
+        del w2_stats["Charge Rate"]
+
     
     labels = list(w1_stats.keys())[2:]
     w1_values = [w1_stats[key] for key in labels]
