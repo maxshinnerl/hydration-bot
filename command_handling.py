@@ -99,6 +99,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
         if response == -1:
             response = insult(message, args, rebound=True)
 
+    if command == '$clear':
+        response = "CLEAR\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType something..."
+
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
      

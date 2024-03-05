@@ -1,0 +1,7 @@
+Usage for $clear command
+
+Run $clear to just clear out recent messages
+
+Example usage:
+
+$clear
