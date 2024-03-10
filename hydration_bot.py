@@ -161,6 +161,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if "tofutyranny" in str(message.author).lower():
+        await message.channel.send("BOZO^")
+
+
+
     # get admin status
     if message.author.top_role.name == "OTRN":
         admin = True
