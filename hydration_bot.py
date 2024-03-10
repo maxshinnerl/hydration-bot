@@ -161,8 +161,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if "tofutyranny" in str(message.author).lower():
-        await message.channel.send("BOZO^")
+    # TODO make this role-based
+    #if "tofutyranny" in str(message.author).lower():
+    #    await message.channel.send("BOZO^")
 
 
 
@@ -254,8 +255,8 @@ async def on_message(message):
 
     # Hello world example
     if message.content.lower() == 'matt is stinky':
-        await message.channel.send(file=discord.File("junk/shower.txt"))
-        #response = "super stinky, take a shower stinky.  Also drink water"
+        # await message.channel.send(file=discord.File("junk/shower.txt"))
+        response = "NO.  Matt is POGGERS"
 
     if (":o" in message.content.lower()) or ("😮" in message.content.lower()):
         rndm = np.random.randint(10)
