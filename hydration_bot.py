@@ -87,8 +87,8 @@ async def on_ready():
 
     
     response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
-    #channel = client.get_channel(875160886585720884) # random
-    channel = client.get_channel(864637689940410378) # bot-testing
+    channel = client.get_channel(875160886585720884) # random
+    #channel = client.get_channel(864637689940410378) # bot-testing
 
     if len(messages) > 0:
         await channel.send(response)
