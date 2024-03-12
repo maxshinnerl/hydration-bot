@@ -1,4 +1,4 @@
 - Actual hydration stuff
 - Bug in perks command: some weapons i.e. Timelost weapons, Subzero Salvo, etc. don't have "randomizedPlugSetHash".  Don't know why.  But this causes perks() to return empty for them.
-
+- May need to rework auto patchnotes--seems like GitPython doesn't get commit messages for commits from other machines.  Check out command line tools i.e. git log --all
 
