@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import numpy as np
 import datetime
 import pandas as pd
-import git
 
 from api_keys import *
 from command_handling import *
@@ -60,32 +59,30 @@ async def on_ready():
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}', flush=True)
 
+
     # Send message on start up (list of updates since last refresh)
-    repo = git.Repo(os.getcwd())
-    main = repo.head.reference
     prev_hexsha = str(pd.read_csv("junk/prev_commit_id.csv")['id'].iloc[0]) # previous commit ID seen locally
-    logs = main.log() # list (kind of) of commits
+    os.system("git log > gitlog.txt") # save git log into gitlog.txt
 
-    # loop through and get updates since last one
-    recording = False
+    # now read logs into string
+    with open('gitlog.txt', 'r') as file:
+        data = "\n"+file.read()
+
     messages = []
-    for commit in main.log():
-        if recording is False:
-            # if the 'old hexsha', i.e. commit id previous to the one you're looking at now, is the same as on local:
-            if commit.oldhexsha == prev_hexsha:
-                recording = True
-            else:
-                continue
+    for commit in data.split("\ncommit "): # not perfect but
+        if len(commit) == 0:
+            continue
 
-        # if you're here then recording has been set to True
-        if "commit" in commit.message:
-            msg = commit.message.replace("commit: ", f"{len(messages)+1}. ")
-            messages.append(msg)
-            latest_hexsha = commit.newhexsha
+        curr_hexsha = commit.split("\n")[0]
+        if curr_hexsha == prev_hexsha:
+            break # stop parsing, you've reached an old commit
 
-    pd.DataFrame({"id":str(latest_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
+        if "https://github.com/maxshinnerl" not in "".join(commit.split("\n")[4:]):
+            msg = "".join(commit.split("\n")[4:]).replace("    ", " ")
+            messages.append(str(len(messages)+1) +") "+ msg)
 
-    
+    pd.DataFrame({"id":str(curr_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
+
     response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
     channel = client.get_channel(875160886585720884) # random
     #channel = client.get_channel(864637689940410378) # bot-testing
