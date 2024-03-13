@@ -528,7 +528,10 @@ def combo(args, all_data, weapon_dict, perk_dict):
         return -1
 
     perk1 = get_closest_gun(None, perks[0], None, None, perk_dict)#[0]
-    perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)#[0]
+    if '*' in perks[1]:
+        perk2=['*']
+    else:
+        perk2 = get_closest_gun(None, perks[1], None, None, perk_dict)#[0]
 
     if (len(perk1) > 0) and (len(perk2) > 0):
         perk1 = perk1[0]
@@ -549,7 +552,11 @@ def combo(args, all_data, weapon_dict, perk_dict):
             continue
 
         perk1found = False
-        perk2found = False
+        if perk2 == '*':
+            perk2found = True
+        else:
+            perk2found = False
+
         for column in possible_rolls:
             if (perk1 in possible_rolls[column]):
                 perk1found = True
@@ -566,6 +573,8 @@ def combo(args, all_data, weapon_dict, perk_dict):
                 found_combos.append(weap)
 
     found_combos = list(np.unique(found_combos))
+
+    perk2 = perk2.replace("*", "ANY")
 
     if len(found_combos) == 0:
         return f"No legendary weapons found with {perk1} and {perk2} (in different columns)"

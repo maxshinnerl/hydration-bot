@@ -1,9 +1,11 @@
 Usage for $combo command
 
 Use to find all weapons that can roll two given perks together
-Currently only gives non-Y1 legendary weapons
+Can also find all weapons with a single perk (replace second perk with *)
+Currently only gives non-static rolled legendary weapons
 
 Example:
 
 $combo Demolitionist & Adrenaline Junkie
 $combo Ricochet Rounds & Osmosis
+$combo Onslaught & *
