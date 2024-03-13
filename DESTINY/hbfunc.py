@@ -287,52 +287,45 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     get all possible perk rolls for a given weapon
     """
 
-    #weapon = " ".join(args)
     weapon = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
 
     repeats = 1
     rolls = {}
-
-    # some weapons (raid, exotic, etc) have a different index for rolls
-    # fixed for weapdict size 4
-    if len(weapon_dict[weapon]) == 4:
-        idx = 2
-    elif len(weapon_dict[weapon]) == 3:
-        idx = 1
-    else:
-        idx = 0
-
-    weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName']
     
-    # for socket (usually barrels, mags, perk1, perk2, etc)
-    for socket in weapon_dict[weapon][idx]['sockets']['socketEntries']:
-        # if random rolls
-        if "randomizedPlugSetHash" in socket.keys():
-            randhash = socket['randomizedPlugSetHash']
-            sockethash = socket['socketTypeHash']
-            socketname = all_data['DestinySocketTypeDefinition'][sockethash]['plugWhitelist'][0]['categoryIdentifier']
+    for idx in reversed(range(len(weapon_dict[weapon]))):
+        weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName']
+    
+        # for socket (usually barrels, mags, perk1, perk2, etc)
+        for socket in weapon_dict[weapon][idx]['sockets']['socketEntries']:
+            # if random rolls
+            if "randomizedPlugSetHash" in socket.keys():
+                randhash = socket['randomizedPlugSetHash']
+                sockethash = socket['socketTypeHash']
+                socketname = all_data['DestinySocketTypeDefinition'][sockethash]['plugWhitelist'][0]['categoryIdentifier']
+            
+                # for every perk that goes in that socket for this weapon
+                perks = set()
+                for perk in all_data['DestinyPlugSetDefinition'][randhash]['reusablePlugItems']:
+                    itemhash = perk['plugItemHash']
+                    perks.add(all_data['DestinyInventoryItemDefinition'][itemhash]['displayProperties']['name'])
+                    
+                # save list of perks for each socket name
+                if socketname == "frames":
+                    socketname = "Main Perk " + str(repeats)
+                    repeats += 1
+                else:
+                    socketname = socketname[0].upper() + socketname[1:]
+                    
+                rolls[socketname] = list(perks)
         
-            # for every perk that goes in that socket for this weapon
-            perks = set()
-            for perk in all_data['DestinyPlugSetDefinition'][randhash]['reusablePlugItems']:
-                itemhash = perk['plugItemHash']
-                perks.add(all_data['DestinyInventoryItemDefinition'][itemhash]['displayProperties']['name'])
-                
-            # save list of perks for each socket name
-            if socketname == "frames":
-                socketname = "Main Perk " + str(repeats)
-                repeats += 1
-            else:
-                socketname = socketname[0].upper() + socketname[1:]
-                
-            rolls[socketname] = list(perks)
-
+        if len(rolls) > 0:
+            break
 
     if retstr is True:
         return(rolls_format(rolls, weapon, weaptype))
 
-    return rolls # can specify retstr = False in parameters if you just want the dict back.
-    
+    return rolls # can specify retstr = False in parameters if you just want the dict back. 
+
 
 def rolls_format(rolls, weapon, weaptype):
     """
