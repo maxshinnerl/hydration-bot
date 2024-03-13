@@ -87,8 +87,10 @@ async def on_ready():
             if "https://github.com/maxshinnerl" not in "".join(commit.split("\n")[4:]):
                 msg = "".join(commit.split("\n")[4:]).replace("    ", " ")
                 messages.append(str(len(messages)+1) +") "+ msg)
+                if len(messages) == 1:
+                    latest_hexsha == curr_hexsha
 
-        pd.DataFrame({"id":str(curr_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
+        pd.DataFrame({"id":str(latest_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
 
         response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
         channel = client.get_channel(875160886585720884) # random
