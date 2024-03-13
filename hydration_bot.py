@@ -45,8 +45,6 @@ else:
 weapon_dict = manifestation.get_weapon_dict(all_data)
 perk_dict = manifestation.get_perk_dict(all_data)
 
-BIRTHDAY = False
-
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!', flush=True)
@@ -95,8 +93,8 @@ async def on_ready():
 
         messages = [str(i+1) + m + ") " for i, m in enumerate(reversed(messages))] 
         response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
-        #channel = client.get_channel(875160886585720884) # random
-        channel = client.get_channel(864637689940410378) # bot-testing
+        channel = client.get_channel(875160886585720884) # random
+        #channel = client.get_channel(864637689940410378) # bot-testing
 
         if len(messages) > 0:
             await channel.send(response)
@@ -133,9 +131,6 @@ async def daily_reset_grab():
     # may have to update after daylight savings
     # basically either 09:05 or 10:05 (leading zero needed)
 
-    # NOTE: EC2 runs on GMT.  +8 hours.  At least we don't have to convert savings time?
-    # Reset is at 17:00 GMT.   Adjust accordingly
-
     # Now with Pi:  09:05 should be correct (until daylight savings)
 
     if now == "10:05":
@@ -146,7 +141,7 @@ async def daily_reset_grab():
         sector, modifiers, armors, weapons = get_lost_sectors()
         response = "**Lost Sector Today**\n" + sector + "\n\n"
 
-        response += "**Modifiers**\n" + "\n".join(modifiers) + "\n\n"
+        # response += "**Modifiers**\n" + "\n".join(modifiers) + "\n\n"
 
         response += "**Armor**\n" + "\n".join(armors) + "\n\n"
 
@@ -163,16 +158,11 @@ async def daily_reset_grab():
     d = datetime.datetime.now().day
     y = datetime.datetime.now().year
 
-    if (m == 8) and (d == 31):
-        # check if you've announced birthday yet
-        if BIRTHDAY is False:
+    if now == "00:01":
+        if (m == 8) and (d == 31):
             response = "It's my birthday, I am now" + str(y - 2021) + " years old."
             channel = client.get_channel(875160886585720884) # random
             await channel.send(response)
-            BIRTHDAY=True
-
-    if m == 9:
-        BIRTHDAY = False
 
 
 @client.event
