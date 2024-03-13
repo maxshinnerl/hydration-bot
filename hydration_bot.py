@@ -91,7 +91,7 @@ async def on_ready():
         # save new latest commit id
         pd.DataFrame({"id":str(latest_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False)
 
-        messages = [str(i+1) + m + ") " for i, m in enumerate(reversed(messages))] 
+        messages = [str(i+1) + ") " + m for i, m in enumerate(reversed(messages))] 
         response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
         channel = client.get_channel(875160886585720884) # random
         #channel = client.get_channel(864637689940410378) # bot-testing
