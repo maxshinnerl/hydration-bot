@@ -1,0 +1,7 @@
+Usage for $no command
+
+$no <text>
+
+Example:
+
+$no bitches?

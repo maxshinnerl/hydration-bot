@@ -26,6 +26,7 @@ For all members:
  - $suggest  -- Add suggestion for Bot features
  - $suggestions -- See list of current suggestions
  - $our -- get bugs bunny communist meme for input text
+ - $no -- get megamind meme for input text
  - $split -- split people in "Waiting-Room" channel into two teams
  - $finish -- bring everyone back into "Waiting-Room"
  - $8ball -- I regret this command
