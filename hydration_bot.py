@@ -90,7 +90,8 @@ async def on_ready():
                 if len(messages) == 1:
                     latest_hexsha = curr_hexsha
 
-        pd.DataFrame({"id":str(latest_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
+        # save new latest commit id
+        pd.DataFrame({"id":str(latest_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False)
 
         response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
         channel = client.get_channel(875160886585720884) # random
@@ -205,11 +206,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # TODO make this role-based
-    #if "tofutyranny" in str(message.author).lower():
-    #    await message.channel.send("BOZO^")
-
-
+    # bozo check
+    is_bozo = False
+    for role in message.author.roles:
+        if role.name.lower() == 'bozo':
+            await message.channel.send("BOZO^")
+            break
 
     # get admin status
     if message.author.top_role.name == "OTRN":
