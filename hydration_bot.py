@@ -295,7 +295,10 @@ async def on_message(message):
             await message.channel.send(file=discord.File(f'images/icon.png'))
 
         elif command == "$our":
-            await message.channel.send(file=discord.File("junk/our_edited.jpg"))
+            await message.channel.send(file=discord.File("images/our_edited.jpg"))
+
+        elif command == "$no":
+            await message.channel.send(file=discord.File("images/no_edited.jpg"))
 
     # Hello world example
     if message.content.lower() == 'matt is stinky':

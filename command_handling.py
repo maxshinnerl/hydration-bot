@@ -69,7 +69,10 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
         response = names(message, args)
 
     if command == '$our':
-        our(args)
+        meme('our', args)
+
+    if command == '$no':
+        meme('no', args)
 
     if command == '$split':
         ret_args = split_teams(client)

@@ -2,7 +2,7 @@ import random
 
 from junk.flirts import *
 from junk.insults import *
-from junk.our import Our
+from junk.meme import Meme
 from hard_coded.voice_channel_ids import *
 from sklearn.model_selection import train_test_split
 from junk.eightball import *
@@ -60,6 +60,7 @@ def insult(message, args, rebound=False):
         response = random.choice(insults)
 
     return response
+
 
 def move(message, args, client):
     """
@@ -230,13 +231,13 @@ def names(message, args):
     return response
 
 
-def our(text):
+def meme(cmd, text):
     """
     Text is to be added to image
     """
-    communism = Our()
-    communism.make_image(text)
-    
+    meme = Meme(cmd)
+    meme.make_image(text)
+
 
 def eightball():
     """

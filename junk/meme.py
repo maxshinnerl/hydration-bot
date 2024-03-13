@@ -1,10 +1,9 @@
-"""Communism for all."""
 from typing import Any, Tuple
 from PIL import Image, ImageFont, ImageDraw
 
 
-class Our:
-    """Communism class."""
+class Meme:
+    """Meme class."""
     def set_font_size(self, word: str) -> None:
         """Set the minimum font size needed to fit the word on the image.
 
@@ -66,25 +65,26 @@ class Our:
         return "\n".join(wrapped_lines), ImageFont.truetype(self.font_path, self.font_size)
 
     def make_image(self, text: str) -> None:
-        """Generate a communism bugs bunny meme.
+        """Generate a meme based on cmd input.
 
-        :param str text: The text of which to put on the communism meme.
+        :param str text: The text of which to put on the meme.
         """
-        text = "our " + " ".join(text)
+        text = self.cmd + " " + " ".join(text)
         wrapped_text, font = self.parse_wrapped_text(text)
         text_width = self.img.textlength(wrapped_text.replace("\n", ""))
         text_start = (350 - text_width) / 2
         ret = self.img.multiline_textbbox((text_start, 10), text, font, align="center")
         self.img.multiline_text((ret[1], 11 / 2), wrapped_text, font=font)
         try:
-            self.image.save("junk/our_edited.jpg")
+            self.image.save(f"images/{self.cmd}_edited.jpg")
             self.image.close()
         except (OSError, ValueError) as err:
             print(str(err))
 
-    def __init__(self, max_length: int = 680):
-        self.image = Image.open("junk/our.jpg")
+    def __init__(self, cmd):
+        self.image = Image.open(f"images/{cmd}.jpg")
         self.font_path = "junk/truetypes/impact.ttf"
         self.img = ImageDraw.Draw(self.image)
-        self.max_length = max_length
         self.font_size = 120
+        self.max_length = int((self.image.size[0] - self.font_size) + (self.image.size[0] - self.font_size)*0.1)
+        self.cmd = cmd
