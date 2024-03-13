@@ -1,3 +1,8 @@
+# inputs at beginning to save time when restarting
+regen = str(input("Rebuild manifest? y/n (DO NOT RUN ON AWS): ")).lower()
+share_patchnotes = str(input("Share patch notes in discord? (y/n): ")).lower()
+
+
 import discord
 from discord.ext import tasks
 import os
@@ -28,14 +33,13 @@ client = discord.Client(intents=intents)
 # so tldr just make functions like on_ready, on_message, etc
 # add the @client.event tag (decorator?) before each one
 
-# generate manifest
-regen = input("Rebuild manifest? y/n (DO NOT RUN ON AWS): ")
+
 if regen.lower() == "y":
     all_data = manifestation.get_all_data(regen=True)
 elif regen.lower() == "n":
     all_data = manifestation.get_all_data(regen=False)
 else:
-    print("assuming no", flush=True)
+    print("Bad input for regen, assuming no", flush=True)
     all_data = manifestaion.get_all_data(regen=False)
 
 weapon_dict = manifestation.get_weapon_dict(all_data)
@@ -60,35 +64,41 @@ async def on_ready():
     print(f'Guild Members:\n - {members}', flush=True)
 
 
-    # Send message on start up (list of updates since last refresh)
-    prev_hexsha = str(pd.read_csv("junk/prev_commit_id.csv")['id'].iloc[0]) # previous commit ID seen locally
-    os.system("git log > gitlog.txt") # save git log into gitlog.txt
+    if share_patchnotes == 'y':
+        print("share patchnotes", flush=True)
 
-    # now read logs into string
-    with open('gitlog.txt', 'r') as file:
-        data = "\n"+file.read()
+        # Send message on start up (list of updates since last refresh)
+        prev_hexsha = str(pd.read_csv("junk/prev_commit_id.csv")['id'].iloc[0]) # previous commit ID seen locally
+        os.system("git log > gitlog.txt") # save git log into gitlog.txt
 
-    messages = []
-    for commit in data.split("\ncommit "): # not perfect but
-        if len(commit) == 0:
-            continue
+        # now read logs into string
+        with open('gitlog.txt', 'r') as file:
+            data = "\n"+file.read()
 
-        curr_hexsha = commit.split("\n")[0]
-        if curr_hexsha == prev_hexsha:
-            break # stop parsing, you've reached an old commit
+        messages = []
+        for commit in data.split("\ncommit "): # not perfect but
+            if len(commit) == 0:
+                continue
 
-        if "https://github.com/maxshinnerl" not in "".join(commit.split("\n")[4:]):
-            msg = "".join(commit.split("\n")[4:]).replace("    ", " ")
-            messages.append(str(len(messages)+1) +") "+ msg)
+            curr_hexsha = commit.split("\n")[0]
+            if curr_hexsha == prev_hexsha:
+                break # stop parsing, you've reached an old commit
 
-    pd.DataFrame({"id":str(curr_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
+            if "https://github.com/maxshinnerl" not in "".join(commit.split("\n")[4:]):
+                msg = "".join(commit.split("\n")[4:]).replace("    ", " ")
+                messages.append(str(len(messages)+1) +") "+ msg)
 
-    response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
-    channel = client.get_channel(875160886585720884) # random
-    #channel = client.get_channel(864637689940410378) # bot-testing
+        pd.DataFrame({"id":str(curr_hexsha)}, index=[0]).to_csv("junk/prev_commit_id.csv",index=False) # save latest commit id
 
-    if len(messages) > 0:
-        await channel.send(response)
+        response = "**HBOT Patch Notes**\n" +"\n".join(messages) 
+        channel = client.get_channel(875160886585720884) # random
+        #channel = client.get_channel(864637689940410378) # bot-testing
+
+        if len(messages) > 0:
+            await channel.send(response)
+
+    else:
+        print("not sharing patch notes",flush=True)
 
 
 @client.event
