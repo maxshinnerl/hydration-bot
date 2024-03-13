@@ -5,3 +5,5 @@ $no <text>
 Example:
 
 $no bitches?
+
+Output is an image in channel
