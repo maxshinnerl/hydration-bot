@@ -307,9 +307,6 @@ async def on_message(message):
     if is_sheesh(message.content.lower()) is True:
         response = "🥶"
 
-    if ("i have a 5/5" in message.content.lower()) or ("i got a 5/5" in message.content.lower()):
-        response = "kill yourself"
-
     if response is not None:    
         await message.channel.send(response)
 
