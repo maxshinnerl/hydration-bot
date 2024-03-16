@@ -18,7 +18,7 @@ def get_flirts(sender, receiver):
               receiver + " are you a parking ticket? 'cause you got FINE written all over you",
               "Hey " + receiver + ", if you were a fruit you'd be a fuggen kumquat or sum idk",
               "I know " + receiver + " and " + sender + " aren't socks, but I think they'd make a great pair",
-              "SHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESH " + receiver + ' you cute',
+              "SHEEEEESH " + receiver + ' you cute',
               receiver + " You have been deemed: FLASHY",
               receiver + " seems like someone who respects the boundaries of the food channel",
               receiver + " +50 social credit",
@@ -27,7 +27,13 @@ def get_flirts(sender, receiver):
               receiver + "https://tenor.com/view/clap-gif-25211694",
               receiver + "nice cock", # sorry
               receiver + "looks like they respect the boundaries of the pets channel",
-              receiver + ", " + sender + " wishes you the crispiest of tendies"
+              receiver + ", " + sender + " wishes you the crispiest of tendies",
+              receiver + ", " + sender + " saw you from across the bar and really digs your vibe",
+              receiver + ", " + sender + " is stuck and needs your help ;)",
+              sender + " throws a healing grenade at " + receiver,
+              sender + " thinks " + receiver + " has a stripper booty and a rack like wow",
+              "Hey" + sender + ", I ran the numbers and honestly "+receiver+" is out of your league. I think it's best if you move on.",
+              sender + " rolled for rizz on " + receiver + " and got a nat 20, prepare to have your world rocked",
               ]
 
 

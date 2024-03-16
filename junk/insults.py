@@ -16,7 +16,6 @@ def get_insults(sender, receiver):
         receiver + " sosig",
         receiver + " you do strikes for fun",
         receiver + ", " + sender + " ordered you a fresh avocado milkshake (code MARCUS at Homi Japanese Ramen)",
-        receiver + " what do you think of Tottenham?\n\n\n\n\n\n SHIIIIIIIIIIIIIIT",
         receiver + " you're dumb",
         receiver + " you smell",
         receiver + " no YOU'RE dumb",
@@ -36,7 +35,10 @@ def get_insults(sender, receiver):
         receiver + " https://tenor.com/view/insult-noncursing-gif-9894176",
         receiver + " https://tenor.com/view/love-i-like-you-i-dont-like-you-all-the-time-cute-kid-gif-16484196",
         receiver + " https://tenor.com/view/you-smell-like-crap-you-stink-disgusting-stinky-take-a-bath-gif-17059185",
-        receiver + ", " + sender + " hopes your tendies are nice and soggy"
+        receiver + ", " + sender + " hopes your tendies are nice and soggy",
+        sender + " 3 tapped " + receiver + "with The Last Word",
+        sender + " sniped " + receiver + " through flinch",
+        receiver + " puts the 'stink' in 'damn that guy stinks'",
     ]
 
     return insults
