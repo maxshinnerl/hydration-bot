@@ -26,7 +26,7 @@ def get_weapon_stats(weapon_name, all_data, weapon_dict):
         # NOTE: if a weapon actually has a zero in a real stat, might want to adjust this code
         # current purpose is to omit "attack", "power", and other weird stats that aren't important
         stats["Name"] = weapon_name
-        stats["Type"] = weapon_dict[weapon_name][0]['itemTypeAndTierDisplayName']
+        stats["Type"] = weapon_dict[weapon_name][0]['itemTypeAndTierDisplayName'] + " (" + get_weapon_element(weapon_name, all_data, weapon_dict) + ")"
 
         if info['value'] != 0:
             stat_name = all_data['DestinyStatDefinition'][info['statHash']]['displayProperties']['name']
@@ -49,12 +49,21 @@ def weapstat(message, args, client, all_data, weapon_dict):
 
     stats = get_weapon_stats(weapon_name, all_data, weapon_dict)
 
+
+
     # no need for return arguments, just need to format the output
     response = ""
     for name, val in list(stats.items()):
         response += name + ": " + str(val) + "\n"
 
     return response
+
+
+def get_weapon_element(weapon_name, all_data, weapon_dict):
+    
+    elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
+
+    return elem
 
 
 def recoil(message, args, client, all_data, weapon_dict):
