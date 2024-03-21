@@ -302,7 +302,8 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     rolls = {}
     
     for idx in reversed(range(len(weapon_dict[weapon]))):
-        weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName']
+        weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName'] + " (" + get_weapon_element(weapon, all_data, weapon_dict) + ")"
+
     
         # for socket (usually barrels, mags, perk1, perk2, etc)
         for socket in weapon_dict[weapon][idx]['sockets']['socketEntries']:
