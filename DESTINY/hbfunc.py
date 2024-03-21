@@ -301,7 +301,7 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
     repeats = 1
     rolls = {}
     
-    for idx in reversed(range(len(weapon_dict[weapon]))):
+    for idx in range(len(weapon_dict[weapon])):
         weaptype = weapon_dict[weapon][idx]['itemTypeAndTierDisplayName'] + " (" + get_weapon_element(weapon, all_data, weapon_dict) + ")"
 
     
