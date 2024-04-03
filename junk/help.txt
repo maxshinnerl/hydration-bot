@@ -15,6 +15,7 @@ For all members:
  - $rolls  -- See all possible rolls a weapon can get
  - $engram -- Get a random legendary weapon roll
  - $combo -- find all legendary weapons that can roll two given perks together
+ - $twab -- give link to latest TWAB (TWID)
 
 
  General:

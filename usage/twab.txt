@@ -1,0 +1,5 @@
+Usage for $twab command
+
+$twab
+
+Gives link to most recent twab

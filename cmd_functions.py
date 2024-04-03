@@ -9,6 +9,8 @@ from junk.eightball import *
 from junk.mc import parse_mc_question
 
 import numpy as np
+import datetime
+import requests
 
 """
 File for all functions relating to commands
@@ -264,3 +266,20 @@ def mc(question: str):
     if not response:
         return "Could not find a choice. use a) choice1 b) choice2 c) choice 3."
     return response
+
+
+def twab():
+    cur = datetime.datetime.now().date()
+    while cur.weekday() != 3:
+        cur -= datetime.timedelta(days=1)
+    
+    y = str(cur)[2:4]
+    m = str(cur)[5:7]
+    d = str(cur)[-2:]
+
+    url = f"https://www.bungie.net/7/en/News/article/this-week-in-destiny-{m}-{d}-{y}"
+
+    if requests.get(url).status_code == 200:
+        return url
+
+    return f"No twab for most recent thursday ({m}-{d}-{y})"

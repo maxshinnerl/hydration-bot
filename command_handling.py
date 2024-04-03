@@ -108,6 +108,9 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
     if command == '$clear':
         response = "CLEAR\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType something..."
 
+    if command == '$twab':
+        response = twab()
+
     # messages need to be sent in an async function, do that in main
     return command, response, ret_args
      
