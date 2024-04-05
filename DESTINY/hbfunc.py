@@ -8,7 +8,7 @@ import difflib
 
 import helpers
 
-def get_weapon_stats(weapon_name, all_data, weapon_dict):
+def get_weapon_stats(weapon_name, all_data, weapon_dict, elem=False):
     """
     Internal function to avoid repeated code
     Do the grunt work getting weapon stats
@@ -26,7 +26,8 @@ def get_weapon_stats(weapon_name, all_data, weapon_dict):
         # NOTE: if a weapon actually has a zero in a real stat, might want to adjust this code
         # current purpose is to omit "attack", "power", and other weird stats that aren't important
         stats["Name"] = weapon_name
-        stats["Type"] = weapon_dict[weapon_name][0]['itemTypeAndTierDisplayName'] + " (" + get_weapon_element(weapon_name, all_data, weapon_dict) + ")"
+        if elem:
+            stats["Type"] = weapon_dict[weapon_name][0]['itemTypeAndTierDisplayName'] + " (" + get_weapon_element(weapon_name, all_data, weapon_dict) + ")"
 
         if info['value'] != 0:
             stat_name = all_data['DestinyStatDefinition'][info['statHash']]['displayProperties']['name']
@@ -39,7 +40,7 @@ def get_weapon_stats(weapon_name, all_data, weapon_dict):
     return stats
 
 
-def weapstat(message, args, client, all_data, weapon_dict):
+def weapstat(message, args, client, all_data, weapon_dict, elem=True):
     """
     Get weapon stats for given weapon
     """
@@ -60,8 +61,14 @@ def weapstat(message, args, client, all_data, weapon_dict):
 
 
 def get_weapon_element(weapon_name, all_data, weapon_dict):
+
+    print(weapon_name, len(all_data.keys()), len(weapon_dict.keys()), flush=True)
     
-    elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
+    if 'defaultDamageTypeHash' in weapon_dict[weapon_name][0].keys():
+        elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
+
+    else:
+        elem = "IDK ITS BUGGED, MAYBE KINETIC?"
 
     return elem
 
@@ -203,7 +210,7 @@ def sametype(message, args, client, all_data, weapon_dict):
     # name = " ".join(args)
     name = get_closest_gun(message, args, client, all_data, weapon_dict)[0]
 
-    stats = get_weapon_stats(name, all_data, weapon_dict)
+    stats = get_weapon_stats(name, all_data, weapon_dict, elem=True)
     weap_type = weapon_dict[name][0]['itemTypeDisplayName']
     
     if name == "Vex Mythoclast":
