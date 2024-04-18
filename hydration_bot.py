@@ -19,6 +19,8 @@ from DESTINY import manifestation
 from DESTINY.hbfunc import get_lost_sectors
 from TWITTER import tweetie
 
+from teammaker import discord_dm_handler
+
 import textless
 
 load_dotenv()
@@ -179,6 +181,21 @@ async def on_message(message):
     response = None
 
     print("message received: ", message.author, flush=True)
+
+    # in case your bot is the one saying the thing, just prevent endless recursion
+    if message.author == client.user:
+        return
+
+    # if DM
+    if not message.guild:
+
+        try:
+            response = discord_dm_handler.dm_handler(message)
+        except:
+            response = "Unable to process message, please send a list of players"
+        await message.channel.send(response)
+        return # don't need to check anything else
+
     
     if (len(message.content) == 0) and (len(message.attachments)==0):
             print("EMPTY", flush=True)
@@ -192,10 +209,6 @@ async def on_message(message):
 
         return
 
-
-    # in case your bot is the one saying the thing, just prevent endless recursion
-    if message.author == client.user:
-        return
 
     # bozo check
     is_bozo = False
