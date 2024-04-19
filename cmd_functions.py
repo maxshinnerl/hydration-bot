@@ -277,7 +277,7 @@ def twab():
     m = str(cur)[5:7]
     d = str(cur)[-2:]
 
-    url = f"https://www.bungie.net/7/en/News/article/this-week-in-destiny-{m}-{d}-{y}"
+    url = f"https://www.bungie.net/7/en/News/article/twid-{m}-{d}-{y}"
 
     if requests.get(url).status_code == 200:
         return url
