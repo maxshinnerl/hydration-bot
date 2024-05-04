@@ -35,6 +35,7 @@ For all members:
  - $mc -- Multiple choice question. Example: $mc "What is the best destiny 2 class? A) Titans B) Warlocks C) Hunters"
  - $names -- For recording funny destiny names.
  - $clear -- clear recent messages in a channel
+ - $fusion -- get a random pokemon fusion
 
 
 For admins:

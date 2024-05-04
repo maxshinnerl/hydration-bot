@@ -1,0 +1,5 @@
+Correct usage for $fusion command
+
+$fusion
+
+That's it :)
