@@ -9,8 +9,10 @@ from junk.eightball import *
 from junk.mc import parse_mc_question
 
 import numpy as np
+import pandas as pd
 import datetime
 import requests
+from PIL import Image
 
 """
 File for all functions relating to commands
@@ -283,3 +285,32 @@ def twab():
         return url
 
     return f"No twab for most recent thursday ({m}-{d}-{y})"
+
+
+def get_fusion():
+    
+    code = 404
+    while code != 200:
+    
+        head = np.random.randint(470) + 1
+        body = np.random.randint(470) + 1
+    
+        url = f"http://if.daena.me/{head}.{body}"
+    
+        r = requests.get(url)
+        code = r.status_code
+    
+    # text processing
+    name = r.text.split("title")[1].split(" #")[0][1:]
+    r = pd.Series(r.text.split(" "))
+    s = r[r.str.contains("png")].reset_index().iloc[0].values[1]
+    s = s[9:-8]
+    
+    response = requests.get(s)
+    if response.status_code == 200:
+        with open("images/fusion.png", 'wb') as f:
+            f.write(response.content)
+    else:
+        return f"request failed for head {head} and body {body}"
+    
+    return name

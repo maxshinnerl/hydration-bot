@@ -306,6 +306,11 @@ async def on_message(message):
         elif command == "$no":
             await message.channel.send(file=discord.File("images/no_edited.jpg"))
 
+        elif command == "$fusion":
+            if "request failed" not in response:
+                await message.channel.send(file=discord.File("images/fusion.png"))
+            
+
     # Hello world example
     if message.content.lower() == 'matt is stinky':
         # await message.channel.send(file=discord.File("junk/shower.txt"))
