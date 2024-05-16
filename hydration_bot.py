@@ -193,6 +193,7 @@ async def on_message(message):
             response = discord_dm_handler.dm_handler(message)
         except:
             response = "Unable to process message, please send a list of players"
+
         await message.channel.send(response)
         return # don't need to check anything else
 

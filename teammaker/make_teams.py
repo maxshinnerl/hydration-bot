@@ -28,7 +28,7 @@ def get_players(args, show=True):
             curname = input(f"Enter player {playernum}: ")
 
     # merge in positions
-    positions = pd.read_csv("POSITIONS.csv")
+    positions = pd.read_csv("teammaker/POSITIONS.csv")
 
     joined = pd.merge(left = pd.DataFrame({"names":names}),
                       right= positions,
@@ -42,7 +42,7 @@ def get_players(args, show=True):
     return joined #names 
 
 
-def show_df(df_ref, pos=False):
+def show_df(df_ref, pos=False, ret=False):
     """
     Pretty print dataframe
     Sort by position if pos
@@ -91,6 +91,9 @@ def show_df(df_ref, pos=False):
     print()
     print(df.to_markdown())
     print()
+
+    if ret is True:
+        return df
 
 
 def split_teams(players, show=True):

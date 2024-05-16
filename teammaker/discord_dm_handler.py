@@ -2,6 +2,7 @@
 # Return error message if message does not contain a numbered list.
 
 import re
+from teammaker import make_teams
 def has_numbers(inputString):
     return bool(re.search(r'\d', inputString))
 
@@ -29,7 +30,6 @@ def dm_handler(message):
         end = len(players) - 1
         for i,line in enumerate(players):
             if has_numbers(line) and (("." in line) or (")" in line)):
-                print(line, flush=True)
                 continue
             else:
                 end = i
@@ -38,11 +38,32 @@ def dm_handler(message):
 
         players = players[:end]
 
-        # TODO pass players list ^ to the existing teammakers code
+        newplayers = []
+        for player in players:
+            np = ''.join([i for i in player if not i.isdigit()])
+            np = re.sub(r'\W+', '', np)
+            newplayers.append(np)
+
+
+        with open('teammaker/players.txt', 'w') as f:
+            for name in newplayers:
+                f.write(f"{name}\n")
+
+        # Pass to teammaker code
+        names_df = make_teams.get_players([None, "teammaker/players.txt"], show=False)
+
+        df = make_teams.split_teams(names_df)
+
         # TODO allow re-roll, swap, finish, etc. to be inputted from discord
+        #df = make_teams.adjust_teams(df, names_df)
 
-        response = "\n".join(players)
+        df = make_teams.show_df(df, pos=True, ret=True)
 
+        response = "WHITE\n"
+        response += "\n".join(df['WHITE'])
 
+        response += "\n\nDARK\n"
+        response += "\n".join(df['DARK'])
+       
 
-    return response
+        return response
