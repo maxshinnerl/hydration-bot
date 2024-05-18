@@ -111,7 +111,7 @@ def split_teams(players, show=True):
         white, dark = train_test_split(players, test_size=0.5, stratify=players['Position'])
     except:
         warnings.warn("TOO FEW CLASSES")
-        vc = players['Position'].value_counts().reset_index()
+        vc = players['Position'].value_counts().reset_index(name='count')
         [print(f"There is only one {c}") for c in vc[vc['count']==1]['Position']]
 
 
