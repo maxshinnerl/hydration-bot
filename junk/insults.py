@@ -40,6 +40,7 @@ def get_insults(sender, receiver):
         sender + " sniped " + receiver + " through flinch",
         receiver + " puts the 'stink' in 'damn that guy stinks'",
         receiver + " squatty bitch",
+        receiver + " L + feathered",
     ]
 
     return insults
