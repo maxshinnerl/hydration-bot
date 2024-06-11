@@ -137,22 +137,22 @@ async def daily_reset_grab():
 
     if now == "10:05":
 
-        print("it's time!", flush=True)
+        # print("it's time!", flush=True)
         
         # Let's also do lost sectors
-        sector, modifiers, armors, weapons = get_lost_sectors()
-        response = "**Lost Sector Today**\n" + sector + "\n\n"
+        # sector, modifiers, armors, weapons = get_lost_sectors()
+        # response = "**Lost Sector Today**\n" + sector + "\n\n"
 
         # response += "**Modifiers**\n" + "\n".join(modifiers) + "\n\n"
 
-        response += "**Armor**\n" + "\n".join(armors) + "\n\n"
+        # response += "**Armor**\n" + "\n".join(armors) + "\n\n"
 
-        response += "**Weapons**\n" +  "\n".join(weapons) + "\n\n"
+        # response += "**Weapons**\n" +  "\n".join(weapons) + "\n\n"
 
-        response += "\nSource: Today in Destiny: https://www.todayindestiny.com/"
+        # response += "\nSource: Today in Destiny: https://www.todayindestiny.com/"
 
-        channel = client.get_channel(853842181759434793) 
-        await channel.send(response)
+        # channel = client.get_channel(853842181759434793) 
+        # await channel.send(response)
 
 
     # birthday
