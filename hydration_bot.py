@@ -137,7 +137,7 @@ async def daily_reset_grab():
 
     if now == "10:05":
 
-        # print("it's time!", flush=True)
+        print("daily reset", flush=True)
         
         # Let's also do lost sectors
         # sector, modifiers, armors, weapons = get_lost_sectors()
