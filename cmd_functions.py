@@ -275,7 +275,7 @@ def twab():
     while cur.weekday() != 3:
         cur -= datetime.timedelta(days=1)
     
-    y = str(cur)[:4]
+    y = str(cur)[2:4]
     m = str(cur)[5:7]
     d = str(cur)[-2:]
 
