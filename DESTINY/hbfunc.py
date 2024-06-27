@@ -68,7 +68,7 @@ def get_weapon_element(weapon_name, all_data, weapon_dict):
         elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
 
     else:
-        elem = "IDK ITS BUGGED, MAYBE KINETIC?"
+        elem = "Element Unknown (by me)"
 
     return elem
 
