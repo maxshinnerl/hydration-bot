@@ -25,6 +25,7 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
 
     if command == '$hydrate':
         response, ret_args = joinleave(message, args, client)
+        response = str(args[0]) + " is now hydrated."
 
     if command == '$weapstat':
         response = hbfunc.weapstat(message, args, client, all_data, weapon_dict)
