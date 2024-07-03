@@ -259,18 +259,21 @@ async def on_message(message):
 
 
         elif command == "$hydrate":
-            channel = args[0]
-            vc = await channel.connect()
-            try:
-                vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="junk/drinkwater.mp3"))
-                while vc.is_playing():
-                    await(asyncio.sleep(1))
+            if admin is False:
+                response = "stinky non admin"
+            else:
+                channel = args[0]
+                vc = await channel.connect()
+                try:
+                    vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="junk/drinkwater.mp3"))
+                    while vc.is_playing():
+                        await(asyncio.sleep(1))
                 
-                await vc.disconnect()
+                    await vc.disconnect()
                 
-            except:    
+                except:    
 
-                await vc.disconnect()
+                    await vc.disconnect()
 
         
         elif (command == "$split") and (admin is True):
