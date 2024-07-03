@@ -265,14 +265,15 @@ async def on_message(message):
                 channel = args[0]
                 vc = await channel.connect()
                 try:
-                    vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="junk/drinkwater.mp3"))
+                    vc.play(discord.FFmpegPCMAudio(source="junk/drinkwater.mp3"))
                     while vc.is_playing():
                         await(asyncio.sleep(1))
                 
                     await vc.disconnect()
                 
                 except:    
-
+                    while vc.is_playing():
+                        await(asyncio.sleep(1))
                     await vc.disconnect()
 
         
