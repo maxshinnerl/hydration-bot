@@ -40,9 +40,8 @@ For all members:
 
 For admins:
  - $move     -- move all members from one voice channel to another
+ - $hydrate  -- hydrate a voice channel
 
-In beta:
- - $joinleave -- have hydration bot join and leave voice channel
 
 **For instructions on using commands, see $usage**
 Example: $usage $flirt
