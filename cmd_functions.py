@@ -277,7 +277,7 @@ def twab():
     
     y = str(cur)[2:4]
     m = str(cur)[5:7]
-    d = str(cur)[-2:]
+    d = str(cur)[-4:]
 
     url = f"https://www.bungie.net/7/en/News/article/twid-{m}-{d}-{y}"
 
