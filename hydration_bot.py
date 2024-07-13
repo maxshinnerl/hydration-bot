@@ -221,7 +221,7 @@ async def on_message(message):
             break
 
     # get admin status
-    if message.author.top_role.name == "OTRN":
+    if message.author.top_role.name == "OTRN" or 'dredgen' in message.author.top_role.name.lower():
         admin = True
     else:
         admin = False
