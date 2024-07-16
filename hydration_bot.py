@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import numpy as np
 import datetime
 import pandas as pd
+import asyncio
 
 from api_keys import *
 from command_handling import *
@@ -20,6 +21,7 @@ from DESTINY.hbfunc import get_lost_sectors
 from TWITTER import tweetie
 
 from teammaker import discord_dm_handler
+import time
 
 import textless
 
@@ -219,7 +221,7 @@ async def on_message(message):
             break
 
     # get admin status
-    if message.author.top_role.name == "OTRN":
+    if message.author.top_role.name == "OTRN" or 'dredgen' in message.author.top_role.name.lower():
         admin = True
     else:
         admin = False
@@ -255,14 +257,24 @@ async def on_message(message):
                 await member.move_to(args[-1])
    
 
-        elif command == "$joinleave":
-            print('joinleave: ', args[0], flush=True)
-            channel = args[0]
-            await channel.connect()
-            for clnt in client.voice_clients:
-                # NOTE: might need to add a checker here in case bot is present in multiple channels
-                print(clnt, flush=True)
-                await clnt.disconnect()
+
+        elif command == "$hydrate":
+            if admin is False:
+                response = "stinky non admin"
+            else:
+                channel = args[0]
+                vc = await channel.connect()
+                try:
+                    vc.play(discord.FFmpegPCMAudio(source="junk/drinkwater.mp3"))
+                    while vc.is_playing():
+                        await(asyncio.sleep(1))
+                
+                    await vc.disconnect()
+                
+                except:    
+                    while vc.is_playing():
+                        await(asyncio.sleep(1))
+                    await vc.disconnect()
 
         
         elif (command == "$split") and (admin is True):
@@ -329,5 +341,5 @@ async def on_message(message):
     if response is not None:    
         await message.channel.send(response)
 
-daily_reset_grab.start()
+#daily_reset_grab.start()
 client.run(TOKEN)
