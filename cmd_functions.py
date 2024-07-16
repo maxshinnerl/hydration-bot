@@ -32,7 +32,7 @@ def flirt(message, args):
 
     else:
         # potentially choose a random response from a set
-        flirts = get_flirts(str(message.author)[:-2], args[0])
+        flirts = get_flirts(str(message.author), args[0])
         
         response = random.choice(flirts)
 
@@ -49,7 +49,7 @@ def insult(message, args, rebound=False):
 
     if rebound is True:
         print(message.author)
-        insults = get_insults("HydrationBot", str(message.author)[:-2])
+        insults = get_insults("HydrationBot", str(message.author))
         response = random.choice(insults)
         return response
 
@@ -60,7 +60,7 @@ def insult(message, args, rebound=False):
         return
 
     else:
-        insults = get_insults(str(message.author)[:-2], args[0])
+        insults = get_insults(str(message.author), args[0])
         response = random.choice(insults)
 
     return response
