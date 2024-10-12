@@ -514,8 +514,6 @@ def get_lost_sectors():
         
     return sector, modifiers, armors, weapons
 
-get_lost_sectors()
-
 
 def get_closest_gun(message, args, client, all_data, weapon_dict):
     """
