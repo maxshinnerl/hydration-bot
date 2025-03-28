@@ -24,6 +24,7 @@ from teammaker import discord_dm_handler
 import time
 
 import textless
+import haiku
 
 load_dotenv()
 
@@ -182,7 +183,7 @@ async def on_message(message):
 
     response = None
 
-    print("message received: ", message.author, flush=True)
+    print("message received: ", message.author.name, flush=True)
 
     # in case your bot is the one saying the thing, just prevent endless recursion
     if message.author == client.user:
@@ -329,6 +330,8 @@ async def on_message(message):
         # await message.channel.send(file=discord.File("junk/shower.txt"))
         response = "NO.  Matt is POGGERS"
 
+    if haiku.is_valid_haiku(message.content):
+        response = "Haiku detected:\n\n" + haiku.split_into_haiku(message.content) + "\n– " + message.author.name
 
     if response is not None:    
         await message.channel.send(response)
