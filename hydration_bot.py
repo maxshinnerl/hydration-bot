@@ -18,7 +18,7 @@ from command_handling import *
 from DESTINY import basics
 from DESTINY import manifestation
 from DESTINY.hbfunc import get_lost_sectors
-from TWITTER import tweetie
+#from TWITTER import tweetie
 
 from teammaker import discord_dm_handler
 import time
@@ -324,6 +324,19 @@ async def on_message(message):
             if "request failed" not in response:
                 await message.channel.send(file=discord.File("images/fusion.png"))
             
+        
+        elif (command == '$scrape') and (message.author.name == 'eatyowaffles'):
+            guild = client.get_guild(client.guilds[0].id)
+            for channel in guild.text_channels:
+                print(f"Channel Name: {channel.name} | Channel ID: {channel.id}")
+
+                async for message in channel.history(limit=100_000):
+                    if "Added name:" in message.content:
+                        print(message.content)
+                        with open("SUGGESTIONS/names.txt", "a") as f:
+                            f.write(message.content.replace("Added name: ", "") + "--" + "(SCRAPED)"+ "\n\n")
+                        await message.channel.send(message.content.replace("Added name: ", ""))
+
 
     # Hello world example
     if message.content.lower() == 'matt is stinky':
