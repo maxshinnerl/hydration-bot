@@ -1,0 +1,8 @@
+Correct usage for $namelist command:
+
+To list names:
+$namelist
+
+Example:
+
+$namelist

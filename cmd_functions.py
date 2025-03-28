@@ -219,6 +219,8 @@ def names(message, args):
     print(author, flush=True)
 
     if len(args) ==  0:
+        # surpassing character limit with this, just return file
+        """
         with open("SUGGESTIONS/names.txt", "r") as f:
             response = f.read()
 
@@ -226,6 +228,8 @@ def names(message, args):
             response = "No names on file"
 
         return response
+        """
+        return "Try $namelist to see the existing names"
 
     response = f"Added name: {name}"
 

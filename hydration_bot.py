@@ -323,8 +323,10 @@ async def on_message(message):
         elif command == "$fusion":
             if "request failed" not in response:
                 await message.channel.send(file=discord.File("images/fusion.png"))
+
+        elif command == "$namelist":
+            await message.channel.send(file=discord.File("SUGGESTIONS/names.txt"))
             
-        
         elif (command == '$scrape') and (message.author.name == 'eatyowaffles'):
             guild = client.get_guild(client.guilds[0].id)
             for channel in guild.text_channels:
