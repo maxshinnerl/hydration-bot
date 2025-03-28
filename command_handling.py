@@ -131,38 +131,3 @@ def split_args(message):
     args = arg_list[1:]
 
     return command, args
-
-
-def is_sheesh(msg_ref):
-    """
-    Check if message contains a "sheesh" anywhere in it (regardless of capitalization or number of e's)
-    
-    Return True if sheesh is found, False otherwise
-    """
-    
-    # I think let's just figure out a loop
-    
-    in_sheesh = False
-    msg = msg_ref.lower()
-    
-    i = -1
-    while(i < len(msg) - 1):
-        i += 1
-        
-        if in_sheesh is False:
-            if msg[i:i+4] == "shee":
-                in_sheesh = True
-                i += 3
-                
-        else:   
-            if msg[i:i+2] == "sh":
-                return True
-            
-            elif msg[i] == 'e':
-                in_sheesh = True #continue
-            
-            else:
-                in_sheesh = False
-                
-    return False
-    

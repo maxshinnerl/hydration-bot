@@ -329,14 +329,6 @@ async def on_message(message):
         # await message.channel.send(file=discord.File("junk/shower.txt"))
         response = "NO.  Matt is POGGERS"
 
-    if (":o" in message.content.lower()) or ("😮" in message.content.lower()):
-        rndm = np.random.randint(10)
-        if rndm == 0:
-            response = "omg he's doing the pog face XDDDDDDDD"
-
-
-    if is_sheesh(message.content.lower()) is True:
-        response = "🥶"
 
     if response is not None:    
         await message.channel.send(response)
