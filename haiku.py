@@ -13,8 +13,6 @@ def is_english_word(word):
 def clean_sentence(sentence, lower):
     """Removes punctuation except apostrophes in contractions and hyphens in words."""
 
-    print("LOWER:", lower)
-
     if lower is False:
         sentence = sentence.strip()
     else:
