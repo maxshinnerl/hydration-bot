@@ -31,6 +31,7 @@ def split_into_haiku(sentence, lower=False):
     # check all words are known
     for word in words:
         if word not in VALID_WORDS: 
+            print(word)
             return None # invalid word
 
     syllables = [count_syllables(word) for word in words]
