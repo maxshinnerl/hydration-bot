@@ -1,14 +1,20 @@
 import textstat
 import re
 from itertools import accumulate
-import nltk
-nltk.download('words')  # can comment this part out once downloaded once
-from nltk.corpus import words
-VALID_WORDS = set(w.lower() for w in words.words())
+import enchant
+VALID_WORDS = enchant.Dict("en_US")
+
+import enchant
+
+def is_english_word(word):
+  return VALID_WORDS.check(word)
 
 
 def clean_sentence(sentence, lower):
     """Removes punctuation except apostrophes in contractions and hyphens in words."""
+
+    print("LOWER:", lower)
+
     if lower is False:
         sentence = sentence.strip()
     else:
@@ -27,12 +33,6 @@ def split_into_haiku(sentence, lower=False):
     """Attempts to split a cleaned sentence into a 5-7-5 Haiku structure and return the formatted Haiku."""
     sentence = clean_sentence(sentence, lower)
     words = sentence.split()
-
-    # check all words are known
-    for word in words:
-        if word not in VALID_WORDS: 
-            print(word)
-            return None # invalid word
 
     syllables = [count_syllables(word) for word in words]
     
@@ -59,4 +59,12 @@ def split_into_haiku(sentence, lower=False):
 
 def is_valid_haiku(sentence):
     """Checks if a sentence can be rearranged into a valid Haiku."""
+    # check all words are known
+    sentence = clean_sentence(sentence, lower=True)
+    words = sentence.split()
+    for word in words:
+        if not is_english_word(word):
+            print("WORD NOT FOUND:", word)
+            return False # invalid word
+
     return split_into_haiku(sentence, lower=True) is not None
