@@ -1,6 +1,11 @@
 import textstat
 import re
 from itertools import accumulate
+import nltk
+nltk.download('words')  # can comment this part out once downloaded once
+from nltk.corpus import words
+VALID_WORDS = set(w.lower() for w in words.words())
+
 
 def clean_sentence(sentence, lower):
     """Removes punctuation except apostrophes in contractions and hyphens in words."""
@@ -22,6 +27,12 @@ def split_into_haiku(sentence, lower=False):
     """Attempts to split a cleaned sentence into a 5-7-5 Haiku structure and return the formatted Haiku."""
     sentence = clean_sentence(sentence, lower)
     words = sentence.split()
+
+    # check all words are known
+    for word in words:
+        if word not in VALID_WORDS: 
+            return None # invalid word
+
     syllables = [count_syllables(word) for word in words]
     
     # Compute cumulative sums to find breakpoints
