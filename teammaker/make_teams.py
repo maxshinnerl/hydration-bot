@@ -91,7 +91,7 @@ def show_df(df_ref, pos=False):
     df.replace("(M) Mo", "(1) Mo", inplace=True)
 
     print()
-    print(df.to_markdown())
+    print(df.to_markdown(), flush=True)
     print()
 
 
@@ -106,6 +106,8 @@ def split_teams(players, show=True):
 
     
     show_df(players)
+    
+    print("DF SHOWN, SPLITTING")
 
     is_split = True
 
