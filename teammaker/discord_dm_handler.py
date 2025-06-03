@@ -7,10 +7,7 @@ def has_numbers(inputString):
     return bool(re.search(r'\d', inputString))
 
 
-def dm_handler(message):
-
-    print("DM RECEIVED:", message, flush=True)
-
+def parse_team_string(message):
     if ("1." not in message.content) and ("1)" not in message.content):
         raise ValueError # respond with default message
         
@@ -50,6 +47,14 @@ def dm_handler(message):
         for name in newplayers:
             f.write(f"{name}\n")
 
+
+def dm_handler(message):
+
+    print("DM RECEIVED:", message, flush=True)
+
+    if message.content.lower() != 'r':
+        parse_team_string(message)
+
     # Pass to teammaker code
     print("getting players..", flush=True)
     names_df = make_teams.get_players([None, "teammaker/players.txt"], show=False)
@@ -57,11 +62,7 @@ def dm_handler(message):
     print("splitting teams..", flush=True)
     df, is_split = make_teams.split_teams(names_df)
 
-    # TODO allow re-roll, swap, finish, etc. to be inputted from discord
-    #df = make_teams.adjust_teams(df, names_df)
-
-    make_teams.show_df(df, pos=True) # added ret argument for this specifically
-                                                    # just gets the pretty DF back as a string
+    df = make_teams.show_df(df, pos=True, ret=True) # added ret bool to get the sorted DF back from show
 
     response = "WHITE\n"
     response += "\n".join(df['WHITE'])

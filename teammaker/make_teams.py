@@ -42,7 +42,7 @@ def get_players(args, show=True):
     return joined #names 
 
 
-def show_df(df_ref, pos=False):
+def show_df(df_ref, pos=False, ret=False):
     """
     Pretty print dataframe
     Sort by position if pos
@@ -53,8 +53,6 @@ def show_df(df_ref, pos=False):
     # Would be good to show real positions here
 
     df = df_ref.copy()
-
-    print('here1', flush=True)
 
     if pos is True:
         white = df['WHITE'].copy()
@@ -86,7 +84,6 @@ def show_df(df_ref, pos=False):
 
         df = ndf.copy()
 
-    print('here2', flush=True)
 
     # for mo :)
     df.replace("(M) Mo", "(1) Mo", inplace=True)
@@ -94,6 +91,9 @@ def show_df(df_ref, pos=False):
     print()
     print(df.to_markdown(), flush=True)
     print()
+
+    if ret:
+        return df
 
 
 def split_teams(players, show=True):
