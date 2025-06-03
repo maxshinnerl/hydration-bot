@@ -191,7 +191,10 @@ async def on_message(message):
 
     # if DM (assuming it's teammaker stuff)
     if not message.guild:
-        # TODO: add handling for reroll and swap
+
+        if message.content.lower() == 'r':
+            await message.channel.send("Re-roll request received")
+            time.sleep(0.5)
 
         try:
             response, is_split = discord_dm_handler.dm_handler(message)
@@ -201,8 +204,16 @@ async def on_message(message):
             return
 
         await message.channel.send(response)
+
+        time.sleep(0.5)
+        if message.content.lower() == 'r':
+            await message.channel.send("\n**NOTE:**Re-rolled the latest roster on file, please double check the players are correct")
+            time.sleep(0.5)
+
         if not is_split:
-            await message.channel.send("\nNOTE: Positions were not considered due to poor distribution.  Please consider making changes.")
+            await message.channel.send("\n**NOTE**: Positions were not considered due to poor distribution.  Please consider making manual changes, or send 'R' to re-roll.")
+        else:
+            await message.channel.send("\nCopy and paste the above, or send 'R' to re-roll")
 
         return # don't need to check anything else
 
