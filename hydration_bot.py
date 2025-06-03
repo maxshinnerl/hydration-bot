@@ -189,15 +189,21 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # if DM
+    # if DM (assuming it's teammaker stuff)
     if not message.guild:
+        # TODO: add handling for reroll and swap
 
         try:
-            response = discord_dm_handler.dm_handler(message)
+            response, is_split = discord_dm_handler.dm_handler(message)
+ 
         except:
-            response = "Unable to process message, please send a list of players"
+            await message.channel.send("Unable to process message, please send a list of players using 1. 2. 3. or 1) 2) 3) etc.")
+            return
 
         await message.channel.send(response)
+        if not is_split:
+            await message.channel.send("\nNOTE: Positions were not considered due to poor distribution.  Please consider making changes.")
+
         return # don't need to check anything else
 
     

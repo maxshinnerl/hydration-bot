@@ -42,7 +42,7 @@ def get_players(args, show=True):
     return joined #names 
 
 
-def show_df(df_ref, pos=False, ret=False):
+def show_df(df_ref, pos=False):
     """
     Pretty print dataframe
     Sort by position if pos
@@ -54,19 +54,21 @@ def show_df(df_ref, pos=False, ret=False):
 
     df = df_ref.copy()
 
+    #pos=False
+
     if pos is True:
         white = df['WHITE'].copy()
         dark = df['DARK'].copy()
 
         wnames = []
         wposis = []
-        for w in white.str.replace(" (", "(").str.split("("):
+        for w in white.str.replace(" (", "(", regex=False).str.split("("):
             wnames.append(w[0])
             wposis.append("("+w[1])
 
         dnames = []
         dposis = []
-        for d in dark.str.replace(" (", "(").str.split("("):
+        for d in dark.str.replace(" (", "(", regex=False).str.split("("):
             dnames.append(d[0])
             dposis.append("("+d[1])
             
@@ -92,9 +94,6 @@ def show_df(df_ref, pos=False, ret=False):
     print(df.to_markdown())
     print()
 
-    if ret is True:
-        return df
-
 
 def split_teams(players, show=True):
     """
@@ -104,18 +103,23 @@ def split_teams(players, show=True):
      
     if len(players) % 2 == 1:
         warnings.warn("ODD number of players")
+
     
     show_df(players)
+
+    is_split = True
 
     try:
         white, dark = train_test_split(players, test_size=0.5, stratify=players['Position'])
     except:
         warnings.warn("TOO FEW CLASSES")
         vc = players['Position'].value_counts().reset_index(name='count')
-        [print(f"There is only one {c}") for c in vc[vc['count']==1]['Position']]
+        print("HERE MAX")
+        show_df(vc)
+        [print(f"There is only one {c}") for c in vc[vc['count']==1]['index']]
 
 
-        for c in vc[vc['count']==1]['Position']:
+        for c in vc[vc['count']==1]['index']:
             if c == "G":
                 print("Replacing G with D")
                 players['Position'].replace("G", "D", inplace=True)
@@ -139,19 +143,25 @@ def split_teams(players, show=True):
             white, dark = train_test_split(players, test_size=0.5, stratify=players['Position'])
         except:
             print("splitting without positions...")
+            is_split = False # mention if not split on positions
             white, dark = train_test_split(players, test_size=0.5)
 
     white = [""] + list((white['names'] + " (" + white['Position'] + ")"))
     dark = [""] + list((dark['names'] + " (" + dark['Position'] + ")"))
 
+    print(white, flush=True)
+    print(dark, flush=True)
+
+
     df = pd.DataFrame({"WHITE": white, "DARK":dark})
 
     df.drop(0, axis=0, inplace=True)
 
+
     if show is True:
         show_df(df, pos=True)
 
-    return df
+    return df, is_split
 
 
 def adjust_teams(df, names_df):
@@ -185,12 +195,16 @@ def adjust_teams(df, names_df):
             else:
                 print(args)
 
-            white_player = args[0]
-            dark_player = args[1]
+            try:
+                white_player = args[0]
+                dark_player = args[1]
 
-            # only have to type substring, not full position and stuff (i.e. can just type name)
-            white_player = list(df[df['WHITE'].str.contains(white_player)]['WHITE'])[0]
-            dark_player = list(df[df['DARK'].str.contains(dark_player)]['DARK'])[0]
+                white_player = list(df[df['WHITE'].str.contains(white_player)]['WHITE'])[0]
+                dark_player = list(df[df['DARK'].str.contains(dark_player)]['DARK'])[0]
+
+            except:
+                print("ISSUE WITH SWAP, format is: S <white_player> & <dark_player>")
+                continue
 
             nw = df['WHITE'].replace(white_player, dark_player)
             nd = df['DARK'].replace(dark_player, white_player)
