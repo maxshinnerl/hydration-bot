@@ -64,10 +64,10 @@ def dm_handler(message):
 
     df = make_teams.show_df(df, pos=True, ret=True) # added ret bool to get the sorted DF back from show
 
-    response = "WHITE\n"
+    response = "**WHITE**\n"
     response += "\n".join(df['WHITE'])
 
-    response += "\n\nDARK\n"
+    response += "\n\n**DARK**\n"
     response += "\n".join(df['DARK'])
        
     print(response)
