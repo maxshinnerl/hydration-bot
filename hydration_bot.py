@@ -207,7 +207,7 @@ async def on_message(message):
 
         time.sleep(0.5)
         if message.content.lower() == 'r':
-            await message.channel.send("\n**NOTE:**Re-rolled the latest roster on file, please double check the players are correct")
+            await message.channel.send("\n**NOTE:** Re-rolled the latest roster on file, please double check the players are correct")
             time.sleep(0.5)
 
         if not is_split:
