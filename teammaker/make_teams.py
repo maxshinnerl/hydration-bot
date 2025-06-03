@@ -54,7 +54,7 @@ def show_df(df_ref, pos=False):
 
     df = df_ref.copy()
 
-    #pos=False
+    print('here1', flush=True)
 
     if pos is True:
         white = df['WHITE'].copy()
@@ -86,6 +86,7 @@ def show_df(df_ref, pos=False):
 
         df = ndf.copy()
 
+    print('here2', flush=True)
 
     # for mo :)
     df.replace("(M) Mo", "(1) Mo", inplace=True)
@@ -104,10 +105,11 @@ def split_teams(players, show=True):
     if len(players) % 2 == 1:
         warnings.warn("ODD number of players")
 
+    print("DF SHOWING....", flush=True)
     
     show_df(players)
     
-    print("DF SHOWN, SPLITTING")
+    print("DF SHOWN, SPLITTING", flush=True)
 
     is_split = True
 
