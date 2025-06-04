@@ -198,6 +198,9 @@ async def on_message(message):
 
         try:
             response, is_split = discord_dm_handler.dm_handler(message)
+            if "players detected, must have an even number" in response:
+                await message.channel.send(response)
+                return
  
         except:
             await message.channel.send("Unable to process message, please send a list of players using 1. 2. 3. or 1) 2) 3) etc.")
@@ -206,12 +209,14 @@ async def on_message(message):
         await message.channel.send(response)
 
         time.sleep(0.5)
+
+        if not is_split:
+            await message.channel.send("\n**NOTE**: Positions were not used in splitting due to poor distribution.  Please consider making manual changes.")
+
         if message.content.lower() == 'r':
             await message.channel.send("\n**NOTE:** Re-rolled the latest roster on file, please double check the players are correct")
             time.sleep(0.5)
 
-        if not is_split:
-            await message.channel.send("\n**NOTE**: Positions were not considered due to poor distribution.  Please consider making manual changes, or send 'R' to re-roll.")
         else:
             await message.channel.send("\nCopy and paste the above, or send 'R' to re-roll")
 

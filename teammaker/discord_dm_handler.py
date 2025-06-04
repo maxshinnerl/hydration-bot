@@ -59,6 +59,9 @@ def dm_handler(message):
     print("getting players..", flush=True)
     names_df = make_teams.get_players([None, "teammaker/players.txt"], show=False)
 
+    if len(names_df) % 2 == 1:
+        return str(len(names_df)) + " players detected, must have an even number", False
+
     print("splitting teams..", flush=True)
     df, is_split = make_teams.split_teams(names_df)
 
