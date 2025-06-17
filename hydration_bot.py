@@ -20,7 +20,7 @@ from DESTINY import manifestation
 from DESTINY.hbfunc import get_lost_sectors
 #from TWITTER import tweetie
 
-from teammaker import discord_dm_handler
+#from teammaker import discord_dm_handler
 import time
 
 import textless
@@ -192,6 +192,7 @@ async def on_message(message):
     # if DM (assuming it's teammaker stuff)
     if not message.guild:
 
+        """
         if message.content.lower() == 'r':
             await message.channel.send("Re-roll request received")
             time.sleep(0.5)
@@ -214,6 +215,9 @@ async def on_message(message):
             await message.channel.send("\n**NOTE**: Positions were not considered due to poor distribution.  Please consider making manual changes, or send 'R' to re-roll.")
         else:
             await message.channel.send("\nCopy and paste the above, or send 'R' to re-roll")
+        """
+
+        await message.channel.send("DM support has been deprecated")
 
         return # don't need to check anything else
 
