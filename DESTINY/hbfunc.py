@@ -334,6 +334,21 @@ def rolls(message, args, client, all_data, weapon_dict, retstr=True):
                     socketname = socketname[0].upper() + socketname[1:]
                     
                 rolls[socketname] = list(perks)
+
+            # origin trait logic (not randomized) -- 3993098925 is the hash code for origin traits
+            elif socket['socketTypeHash'] == 3993098925:
+                sockethash = socket['socketTypeHash']
+                socketname = all_data['DestinySocketTypeDefinition'][sockethash]['plugWhitelist'][0]['categoryIdentifier']
+        
+                perks = set()
+        
+                for perk in socket['reusablePlugItems']:
+                    perks.add(all_data['DestinyInventoryItemDefinition'][perk['plugItemHash']]['displayProperties']['name'])
+                    
+
+                socketname = socketname[0].upper() + socketname[1:]
+                    
+                rolls[socketname] = list(perks)
         
         if len(rolls) > 0:
             break
