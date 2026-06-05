@@ -243,6 +243,9 @@ def meme(cmd, text):
     """
     Text is to be added to image
     """
+    if len(text) == 0:
+        text = ['what?', 'you', 'forgot', 'the', 'text', 'dummy']
+
     meme = Meme(cmd)
     meme.make_image(text)
 
