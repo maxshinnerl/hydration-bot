@@ -62,8 +62,6 @@ def weapstat(message, args, client, all_data, weapon_dict, elem=True):
 
 def get_weapon_element(weapon_name, all_data, weapon_dict):
 
-    print(weapon_name, len(all_data.keys()), len(weapon_dict.keys()), flush=True)
-    
     if 'defaultDamageTypeHash' in weapon_dict[weapon_name][0].keys():
         elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
 
