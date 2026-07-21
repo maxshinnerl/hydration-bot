@@ -547,7 +547,6 @@ def get_closest_gun(message, args, client, all_data, weapon_dict):
 
     return closest
 
-
 def combo(args, all_data, weapon_dict, perk_dict):
     """
     Return weapons who can roll two given perks in different slots
@@ -609,8 +608,24 @@ def combo(args, all_data, weapon_dict, perk_dict):
     if len(found_combos) == 0:
         return f"No legendary weapons found with {perk1} and {perk2} (in different columns)"
 
+    # added 7/21/26 -- group by weapon type
+    found_dict = {}
+    for weap in found_combos:
+        weaptype = weapon_dict[weap][0]['itemTypeDisplayName']
+        if weaptype in found_dict.keys():
+            found_dict[weaptype].append(f"[{get_weapon_frame(all_data, weapon_dict, weap)}]  {weap}")
+        else:
+            found_dict[weaptype] = [f"[{get_weapon_frame(all_data, weapon_dict, weap)}]  {weap}"]
+    
     response = f'**LEGENDARY WEAPONS WITH {perk1} AND {perk2}** (in different columns)\n'
-    for gun in found_combos:
-        response += gun + "\n"
+    for weaptype in found_dict:
+        response += '*' + weaptype + '*\n' 
+        for gun in sorted(found_dict[weaptype]):
+            response += gun + "\n"
+        response += "\n"
 
     return response
+
+
+def get_weapon_frame(all_data, weapon_dict, weapon):
+    return all_data['DestinyInventoryItemDefinition'][weapon_dict[weapon][0]['sockets']['socketEntries'][0]['singleInitialItemHash']]['displayProperties']['name']
