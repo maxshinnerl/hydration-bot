@@ -66,7 +66,7 @@ def get_weapon_element(weapon_name, all_data, weapon_dict):
         elem = all_data['DestinyDamageTypeDefinition'][weapon_dict[weapon_name][0]['defaultDamageTypeHash']]['displayProperties']['name']
 
     else:
-        elem = "Element Unknown (by me)"
+        elem = "Element Unknown (by HBot)"
 
     return elem
 
@@ -611,9 +611,9 @@ def combo(args, all_data, weapon_dict, perk_dict):
     for weap in found_combos:
         weaptype = weapon_dict[weap][0]['itemTypeDisplayName']
         if weaptype in found_dict.keys():
-            found_dict[weaptype].append(f"[{get_weapon_frame(all_data, weapon_dict, weap)}]  {weap}")
+            found_dict[weaptype].append(f"[{get_weapon_frame(all_data, weapon_dict, weap)}] [{get_weapon_element(weap, all_data, weapon_dict)}] {weap}")
         else:
-            found_dict[weaptype] = [f"[{get_weapon_frame(all_data, weapon_dict, weap)}]  {weap}"]
+            found_dict[weaptype] = [f"[{get_weapon_frame(all_data, weapon_dict, weap)}] [{get_weapon_element(weap, all_data, weapon_dict)}] {weap}"]
     
     response = f'**LEGENDARY WEAPONS WITH {perk1} AND {perk2}** (in different columns)\n'
     for weaptype in found_dict:
