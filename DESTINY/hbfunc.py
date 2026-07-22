@@ -626,4 +626,7 @@ def combo(args, all_data, weapon_dict, perk_dict):
 
 
 def get_weapon_frame(all_data, weapon_dict, weapon):
-    return all_data['DestinyInventoryItemDefinition'][weapon_dict[weapon][0]['sockets']['socketEntries'][0]['singleInitialItemHash']]['displayProperties']['name']
+    try: 
+        return all_data['DestinyInventoryItemDefinition'][weapon_dict[weapon][0]['sockets']['socketEntries'][0]['singleInitialItemHash']]['displayProperties']['name']
+    except: 
+        return "Frame Not Found"
