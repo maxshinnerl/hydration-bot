@@ -5,6 +5,7 @@ import zipfile
 import pickle
 import json
 import sqlite3
+import re
 
 from DESTINY.basics import *
 # NOTE: when running locally, will need to remove the DESTINY. from the above import
@@ -82,6 +83,7 @@ def build_dict():
     print('Dictionary Generated!')
     return all_data
 
+    
 def get_table_list(cur):
     """
     Replacement for hash_dict since I believe it may be irrelevant
@@ -156,8 +158,9 @@ def get_weapon_dict(all_data):
     weapons_dict = {}
     for item in list(all_data['DestinyInventoryItemDefinition'].items()):
     
-        # check if weapon and 'quality' (used for checking light level) is available
-        if (item[1]['inventory']['bucketTypeHash'] in weapon_buckets.keys()) and ('quality' in item[1].keys()):
+        # check if weapon and 'quality' (used for checking light level) is available -- was: ('quality' in item[1].keys()):
+        # UPDATE 2026: no more light level check, instead check for release version trait :
+        if (item[1]['inventory']['bucketTypeHash'] in weapon_buckets.keys()) and ('traitIds' in item[1].keys()) and (any('releases' in trait for trait in item[1]['traitIds'])):
             name = item[1]['displayProperties']['name']
         
             # if not yet in weapons_dict:
@@ -167,9 +170,24 @@ def get_weapon_dict(all_data):
 
     # sort by the power level cap of weapon, so most recent version of weapon is presented first.
     for key, val in weapons_dict.items():
-        weapons_dict[key] = sorted(val, key = lambda x: all_data['DestinyPowerCapDefinition'][x['quality']['versions'][0]['powerCapHash']]['powerCap'], reverse=True)
+        #weapons_dict[key] = sorted(val, key = lambda x: all_data['DestinyPowerCapDefinition'][x['quality']['versions'][0]['powerCapHash']]['powerCap'], reverse=True) # no more power cap 
+        weapons_dict[key] = sorted(val, key = get_release_version, reverse=True)
+
 
     return weapons_dict
+
+
+
+def get_release_version(item):
+    """
+    For the new weapon dict sorting logic, extract the release version number
+    """
+    for trait in item.get('traitIds', []):
+        match = re.match(r'releases\.v(\d+)', trait)
+        if match:
+            return int(match.group(1))
+    return 0
+
 
 
 def get_perk_dict(all_data):
