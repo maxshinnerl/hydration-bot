@@ -544,6 +544,7 @@ def get_closest_gun(message, args, client, all_data, weapon_dict):
         closest = difflib.get_close_matches(name.upper(), words)
 
     return closest
+    
 
 def combo(args, all_data, weapon_dict, perk_dict):
     """
