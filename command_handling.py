@@ -102,9 +102,12 @@ def command_handler(message, client, admin, all_data={}, weapon_dict={}, perk_di
         response = mc(args)
 
     if command == '$combo':
-        response = hbfunc.combo(args, all_data, weapon_dict, perk_dict)
-        if response == -1:
-            response = insult(message, args, rebound=True)
+        try:
+            response = hbfunc.combo(args, all_data, weapon_dict, perk_dict)
+            if response == -1:
+                response = insult(message, args, rebound=True)
+        except:
+            response = "Combo command failed to return :("
 
     if command == '$clear':
         response = "CLEAR\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType something..."
