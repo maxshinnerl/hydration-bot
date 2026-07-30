@@ -322,6 +322,12 @@ async def on_message(message):
 
         elif command == "$namelist":
             await message.channel.send(file=discord.File("SUGGESTIONS/names.txt"))
+
+        elif command == "$combo":
+            # break up response
+            for block in response.split("\n\n"):
+                if len(str(block)) > 0:
+                    await message.channel.send(block)
             
         elif (command == '$scrape') and (message.author.name == 'eatyowaffles'):
             guild = client.get_guild(client.guilds[0].id)
