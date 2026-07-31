@@ -328,6 +328,8 @@ async def on_message(message):
             for block in response.split("\n\n"):
                 if len(str(block)) > 0:
                     await message.channel.send(block)
+                    
+            response = None
             
         elif (command == '$scrape') and (message.author.name == 'eatyowaffles'):
             guild = client.get_guild(client.guilds[0].id)
