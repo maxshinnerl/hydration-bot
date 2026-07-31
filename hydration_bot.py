@@ -327,7 +327,7 @@ async def on_message(message):
             # break up response
             for block in response.split("\n\n"):
                 if len(str(block)) > 0:
-                    await message.channel.send(block)
+                    await message.channel.send("\n" + block)
                     
             response = None
             
